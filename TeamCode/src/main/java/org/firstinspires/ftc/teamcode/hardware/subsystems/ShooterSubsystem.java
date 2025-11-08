@@ -37,7 +37,7 @@ public class ShooterSubsystem extends RE_SubsystemBase {
 
     private PIDController shooterPID = new PIDController(0, 0, 0);
 
-    private static final double tickPerRev = 1440.0;
+    private static double tickPerRev = 28;
     private static final double maxRpm = 6000.0;
     private static final double maxTicksPerSecond = (tickPerRev * maxRpm) / 60.0;
 
@@ -53,9 +53,11 @@ public class ShooterSubsystem extends RE_SubsystemBase {
 
 
         shootMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        shootMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        shootMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 //        shootMotor.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER,
 //                new PIDFCoefficients(Constants.kP, Constants.kI, Constants.kD, Constants.kF));
+
+        tickPerRev = shootMotor.getMotorType().getTicksPerRev();
 
         shooterPID.setPID(Constants.kP, Constants.kI, Constants.kD);
 
@@ -91,31 +93,20 @@ public class ShooterSubsystem extends RE_SubsystemBase {
 
         switch (shootState) {
             case LOWERPOWER:
-                targetVelocity = 0.65 * maxTicksPerSecond;
+                shootMotor.setPower(0.75);
+                targetVelocity = 0.75 * maxTicksPerSecond;
                 break;
 
             case SHOOT:
 
+                shootMotor.setPower(Constants.shootPower);
                 targetVelocity = Constants.shootPower * maxTicksPerSecond;
                 break;
 
             case STOP:
+                shootMotor.setPower(0);
                 targetVelocity = 0;
                 break;
-        }
-
-
-        if (targetVelocity == 0) {
-            shootMotor.setPower(0);
-        } else {
-            double velocity = shootMotor.getVelocity();
-
-            double ff = Constants.kF * (targetVelocity / maxTicksPerSecond);
-            double output = shooterPID.calculate(velocity, targetVelocity) + ff;
-
-            output = Math.max(-1, Math.min(1, output));
-
-            shootMotor.setPower(output);
         }
 
 

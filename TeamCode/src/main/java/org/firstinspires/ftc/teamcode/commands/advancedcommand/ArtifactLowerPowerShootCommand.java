@@ -18,8 +18,8 @@ public class ArtifactLowerPowerShootCommand extends SequentialCommandGroup {
     public
     ArtifactLowerPowerShootCommand() {
         super(
-                new ShooterStateCommand(ShooterSubsystem.ShootState.LOWERPOWER),
-                new WaitCommand(100)
+                new ShooterStateCommand(ShooterSubsystem.ShootState.LOWERPOWER)
+//                new WaitCommand(100)
         );
     }
 }

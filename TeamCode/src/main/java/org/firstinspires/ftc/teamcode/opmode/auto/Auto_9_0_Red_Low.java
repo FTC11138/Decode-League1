@@ -1,7 +1,8 @@
 package org.firstinspires.ftc.teamcode.opmode.auto;
 
-import static org.firstinspires.ftc.teamcode.opmode.auto.AutonomousMethods.buildPath;
 import static org.firstinspires.ftc.teamcode.opmode.auto.AutonomousMethods.buildCurve;
+import static org.firstinspires.ftc.teamcode.opmode.auto.AutonomousMethods.buildPath;
+
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
@@ -17,14 +18,13 @@ import org.firstinspires.ftc.teamcode.commands.advancedcommand.ArtifactShootComm
 import org.firstinspires.ftc.teamcode.commands.drivecommand.PathCommand;
 import org.firstinspires.ftc.teamcode.commands.subsystem.StopStateCommand;
 import org.firstinspires.ftc.teamcode.hardware.Robot;
-import org.firstinspires.ftc.teamcode.hardware.subsystems.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.hardware.subsystems.ShooterSubsystem;
-import org.firstinspires.ftc.teamcode.util.Globals;
 import org.firstinspires.ftc.teamcode.util.Constants;
+import org.firstinspires.ftc.teamcode.util.Globals;
 
-@Autonomous(name = "Auto_8_0_Red :P")
+@Autonomous(name = "Auto_3_0_Red_Low ;-;")
 @Configurable
-public class Auto_9_0_Red extends LinearOpMode {
+public class Auto_9_0_Red_Low extends LinearOpMode {
 
 
 
@@ -138,6 +138,8 @@ public class Auto_9_0_Red extends LinearOpMode {
         Robot robot = Robot.getInstance();
 
         Globals.IS_AUTO = true;
+
+        Constants.shootPower = 0.76;
 
         robot.initialize(hardwareMap, telemetry);
         CommandScheduler.getInstance().reset();

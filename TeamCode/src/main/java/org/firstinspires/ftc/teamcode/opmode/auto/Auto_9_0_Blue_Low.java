@@ -1,7 +1,8 @@
 package org.firstinspires.ftc.teamcode.opmode.auto;
 
-import static org.firstinspires.ftc.teamcode.opmode.auto.AutonomousMethods.buildPath;
 import static org.firstinspires.ftc.teamcode.opmode.auto.AutonomousMethods.buildCurve;
+import static org.firstinspires.ftc.teamcode.opmode.auto.AutonomousMethods.buildPath;
+
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
@@ -17,74 +18,73 @@ import org.firstinspires.ftc.teamcode.commands.advancedcommand.ArtifactShootComm
 import org.firstinspires.ftc.teamcode.commands.drivecommand.PathCommand;
 import org.firstinspires.ftc.teamcode.commands.subsystem.StopStateCommand;
 import org.firstinspires.ftc.teamcode.hardware.Robot;
-import org.firstinspires.ftc.teamcode.hardware.subsystems.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.hardware.subsystems.ShooterSubsystem;
-import org.firstinspires.ftc.teamcode.util.Globals;
 import org.firstinspires.ftc.teamcode.util.Constants;
+import org.firstinspires.ftc.teamcode.util.Globals;
 
-@Autonomous(name = "Auto_8_0_Red :P")
+@Autonomous(name = "Auto_3_0_Blue_Low :D")
 @Configurable
-public class Auto_9_0_Red extends LinearOpMode {
+public class Auto_9_0_Blue_Low extends LinearOpMode {
 
 
 
-    public static double startX = 144 - 20.5;
+    public static double startX = 20.5;
     public static double startY = 123;
-    public static double startHeading = 180 - 144;
+    public static double startHeading = 144;
 
 
-    public static double shoot0X = 144 - 52.5;
+    public static double shoot0X = 52.5;
     public static double shoot0Y = 103.5;
-    public static double shoot0Heading = 180 - 149;
+    public static double shoot0Heading = 149;
 
 
-    public static double intake1X = 144 - 23.5;
+    public static double intake1X = 23.5;
     public static double intake1Y = 84;
-    public static double intake1Heading = 180 - 180;
+    public static double intake1Heading = 180;
 
 
-    public static double shoot1X = 144 - 52.5;
+    public static double shoot1X = 52.5;
     public static double shoot1Y = 103.5;
-    public static double shoot1Heading = 180 - 150;
+    public static double shoot1Heading = 150;
 
 
-    public static double intake2X = 144 - 19;
+    public static double intake2X = 19;
     public static double intake2Y = 60;
-    public static double intake2Heading = 180 - 180;
+    public static double intake2Heading = 180;
 
 
-    public static double shoot2X = 144 - 52.5;
+    public static double shoot2X = 52.5;
     public static double shoot2Y = 103.5;
-    public static double shoot2Heading = 180 - 150;
+    public static double shoot2Heading = 150;
 
 
-    public static double intake3X = 144 - 20;
+    public static double intake3X = 20;
     public static double intake3Y = 35.6;
-    public static double intake3Heading = 180 - 180;
+    public static double intake3Heading = 180;
 
-    public static double shoot3X = 144 - 52.5;
+    public static double shoot3X = 52.5;
     public static double shoot3Y = 103.5;
-    public static double shoot3Heading = 180 - 150;
+    public static double shoot3Heading = 150;
 
-    public static double move3X = 144 - 60;
+    public static double move3X = 60;
     public static double move3Y = 108;
-    public static double moveHeading = 180 -145;
+    public static double moveHeading = 145;
 
 
 
 
     // control points for intaking
-    public static double control1X = 144 - 80;
+    public static double control1X = 80;
     public static double control1Y = 84;
 
-    public static double control2X = 144 - 69;
+    public static double control2X = 69;
     public static double control2Y = 76;
-    public static double control22X = 144 - 79;
+    public static double control22X = 79;
     public static double control22Y = 56;
 
-    public static double control3X = 144 - 89.7;
+    public static double control3X = 89.7;
     public static double control3Y = 31.5;
-    public static double control32X = 144 - 66.5;
+    public static double control32X = 66.5;
     public static double control32Y = 34;
 
 
@@ -139,6 +139,7 @@ public class Auto_9_0_Red extends LinearOpMode {
 
         Globals.IS_AUTO = true;
 
+        Constants.shootPower = 0.71;
         robot.initialize(hardwareMap, telemetry);
         CommandScheduler.getInstance().reset();
 
@@ -154,12 +155,13 @@ public class Auto_9_0_Red extends LinearOpMode {
         robot.follower.setPose(startPose);
 
         CommandScheduler.getInstance().schedule(
+
                 new SequentialCommandGroup(
                         new PathCommand(shoot0Path).alongWith(
                                 new ArtifactInCommand()
                         ),
 
-                        new WaitCommand(1300), // to let the launcher charge up
+                        new WaitCommand(1000), // to let the launcher charge up
 
                         new ArtifactShootCommand(),
                         new WaitCommand(300),
@@ -175,8 +177,6 @@ public class Auto_9_0_Red extends LinearOpMode {
 
                         new PathCommand(shoot1Path),
 
-                        new WaitCommand(300),
-
                         new ArtifactShootCommand(),
                         new WaitCommand(300),
                         new ArtifactLowerPowerShootCommand(),
@@ -189,8 +189,6 @@ public class Auto_9_0_Red extends LinearOpMode {
                         new PathCommand(intake2Path),
 
                         new PathCommand(shoot2Path),
-
-                        new WaitCommand(300),
 
                         new ArtifactShootCommand(),
                         new WaitCommand(300),
@@ -205,8 +203,6 @@ public class Auto_9_0_Red extends LinearOpMode {
                         new PathCommand(intake3Path),
 
                         new PathCommand(shoot3Path),
-
-                        new WaitCommand(300),
 
                         new ArtifactShootCommand(),
                         new WaitCommand(300),

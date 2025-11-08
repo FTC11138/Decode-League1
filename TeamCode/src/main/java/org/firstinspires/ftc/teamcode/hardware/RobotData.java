@@ -35,7 +35,7 @@ public class RobotData {
     public CameraSubsystem.ShootDistance shootDistance = CameraSubsystem.ShootDistance.OUTOFRANGE;
 
 
-    private static final double TICKS_PER_REV = 1440.0;
+    private static final double TICKS_PER_REV = 28.0;
 
     public void write(Telemetry telemetry) {
 
