@@ -93,7 +93,7 @@ public class ShooterSubsystem extends RE_SubsystemBase {
 
         switch (shootState) {
             case LOWERPOWER:
-                shootMotor.setPower(0.75);
+                shootMotor.setPower(0.7);
                 targetVelocity = 0.75 * maxTicksPerSecond;
                 break;
 

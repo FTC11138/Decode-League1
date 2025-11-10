@@ -26,17 +26,16 @@ public class TurretSubsystem extends RE_SubsystemBase {
 
     private TurretState turretState;
 
-    // Time clamps
     private static final double MIN_DT = 1e-3;  // 1 ms
     private static final double MAX_DT = 0.05;  // 50 ms
 
 
-    private static final double TICKS_PER_REV = 1440.0;
-    private static final double GEAR_RATIO = 208.0 / 60.0;
-    private static final double TICKS_PER_DEGREE = (TICKS_PER_REV * GEAR_RATIO) / 360.0;
+    private static final double ticksPerRev = 1440.0;
+    private static final double gearRatio = 208.0 / 60.0;
+    private static final double ticksPerDeg = (ticksPerRev * gearRatio) / 360.0;
 
-    private static final double LEFT_LIMIT_DEG = -90.0;
-    private static final double RIGHT_LIMIT_DEG = 90.0;
+    private static final double leftlim = -90.0;
+    private static final double rightlim = 90.0;
 
     public TurretSubsystem(HardwareMap hw, String motorName, CameraSubsystem camera) {
         this.turretMotor = hw.get(DcMotorEx.class, motorName);
@@ -52,8 +51,6 @@ public class TurretSubsystem extends RE_SubsystemBase {
         Robot.getInstance().subsystems.add(this);
         lastNanos = System.nanoTime();
     }
-
-    // ---------------- State Control ----------------
 
     public void setTurretState(TurretState state) {
         this.turretState = state;
@@ -72,15 +69,13 @@ public class TurretSubsystem extends RE_SubsystemBase {
         setTurretState(enable ? TurretState.AUTO_AIM : TurretState.MANUAL);
     }
 
-    // ---------------- Power & Motion ----------------
-
     public void setTurretPower(double pwr) {
         double angleDeg = getTurretAngleDeg();
 
-        // Clamp power if near angle limits
-        if (angleDeg <= LEFT_LIMIT_DEG && pwr < 0) {
+        // clamp movement
+        if (angleDeg <= leftlim && pwr < 0) {
             pwr = 0;
-        } else if (angleDeg >= RIGHT_LIMIT_DEG && pwr > 0) {
+        } else if (angleDeg >= rightlim && pwr > 0) {
             pwr = 0;
         }
 
@@ -88,7 +83,7 @@ public class TurretSubsystem extends RE_SubsystemBase {
     }
 
     public double getTurretAngleDeg() {
-        return turretMotor.getCurrentPosition() / TICKS_PER_DEGREE;
+        return turretMotor.getCurrentPosition() / ticksPerDeg;
     }
 
     @Override

@@ -75,7 +75,7 @@ public class TeleOp_SoloSlow extends CommandOpMode {
     @Override
     public void initialize() {
 
-        Constants.shootPower = 0.8;
+        Constants.shootPower = 0.75;
 
         g1 = new GamepadEx(gamepad1);
 

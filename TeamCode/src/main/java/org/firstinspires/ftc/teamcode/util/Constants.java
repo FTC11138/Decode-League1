@@ -13,7 +13,7 @@ public class Constants {
     public static double pathEndYTolerance = 1;
     public static double pathEndHeadingTolerance = Math.toRadians(2);
 
-    public static boolean robotCentric = true;
+    public static boolean robotCentric = false;
 
     /* -------------------------------------------- CAMERA CONSTANTS -------------------------------------------- */
     //Pipeline: 0

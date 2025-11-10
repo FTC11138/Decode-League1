@@ -164,9 +164,9 @@ public class Auto_9_0_Blue_Low extends LinearOpMode {
                         new WaitCommand(1000), // to let the launcher charge up
 
                         new ArtifactShootCommand(),
-                        new WaitCommand(300),
+                        new WaitCommand(400),
                         new ArtifactLowerPowerShootCommand(),
-                        new WaitCommand(700),
+                        new WaitCommand(800),
                         new ArtifactShootCommand(),
                         new ArtifactInCommand(),
 
@@ -178,9 +178,9 @@ public class Auto_9_0_Blue_Low extends LinearOpMode {
                         new PathCommand(shoot1Path),
 
                         new ArtifactShootCommand(),
-                        new WaitCommand(300),
+                        new WaitCommand(400),
                         new ArtifactLowerPowerShootCommand(),
-                        new WaitCommand(700),
+                        new WaitCommand(800),
                         new ArtifactShootCommand(),
                         new ArtifactInCommand(),
 
@@ -191,9 +191,9 @@ public class Auto_9_0_Blue_Low extends LinearOpMode {
                         new PathCommand(shoot2Path),
 
                         new ArtifactShootCommand(),
-                        new WaitCommand(300),
+                        new WaitCommand(400),
                         new ArtifactLowerPowerShootCommand(),
-                        new WaitCommand(700),
+                        new WaitCommand(800),
                         new ArtifactShootCommand(),
                         new ArtifactInCommand(),
 
@@ -205,9 +205,9 @@ public class Auto_9_0_Blue_Low extends LinearOpMode {
                         new PathCommand(shoot3Path),
 
                         new ArtifactShootCommand(),
-                        new WaitCommand(300),
+                        new WaitCommand(400),
                         new ArtifactLowerPowerShootCommand(),
-                        new WaitCommand(700),
+                        new WaitCommand(800),
                         new ArtifactShootCommand(),
                         new ArtifactInCommand(),
 

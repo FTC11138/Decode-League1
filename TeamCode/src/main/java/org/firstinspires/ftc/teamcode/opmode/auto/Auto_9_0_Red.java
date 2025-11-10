@@ -162,9 +162,9 @@ public class Auto_9_0_Red extends LinearOpMode {
                         new WaitCommand(1300), // to let the launcher charge up
 
                         new ArtifactShootCommand(),
-                        new WaitCommand(300),
+                        new WaitCommand(400),
                         new ArtifactLowerPowerShootCommand(),
-                        new WaitCommand(700),
+                        new WaitCommand(800),
                         new ArtifactShootCommand(),
                         new ArtifactInCommand(),
 
@@ -178,9 +178,9 @@ public class Auto_9_0_Red extends LinearOpMode {
                         new WaitCommand(300),
 
                         new ArtifactShootCommand(),
-                        new WaitCommand(300),
+                        new WaitCommand(400),
                         new ArtifactLowerPowerShootCommand(),
-                        new WaitCommand(700),
+                        new WaitCommand(800),
                         new ArtifactShootCommand(),
                         new ArtifactInCommand(),
 
@@ -193,9 +193,9 @@ public class Auto_9_0_Red extends LinearOpMode {
                         new WaitCommand(300),
 
                         new ArtifactShootCommand(),
-                        new WaitCommand(300),
+                        new WaitCommand(400),
                         new ArtifactLowerPowerShootCommand(),
-                        new WaitCommand(700),
+                        new WaitCommand(800),
                         new ArtifactShootCommand(),
                         new ArtifactInCommand(),
 
@@ -209,9 +209,9 @@ public class Auto_9_0_Red extends LinearOpMode {
                         new WaitCommand(300),
 
                         new ArtifactShootCommand(),
-                        new WaitCommand(300),
+                        new WaitCommand(400),
                         new ArtifactLowerPowerShootCommand(),
-                        new WaitCommand(700),
+                        new WaitCommand(800),
                         new ArtifactShootCommand(),
                         new ArtifactInCommand(),
 
