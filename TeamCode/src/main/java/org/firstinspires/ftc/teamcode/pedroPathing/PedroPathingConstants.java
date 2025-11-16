@@ -24,14 +24,14 @@ public class PedroPathingConstants {
             .forwardZeroPowerAcceleration(-25.9346931313679598)
             .lateralZeroPowerAcceleration(-67.342491844080064)
             .translationalPIDFCoefficients(new PIDFCoefficients(
-                    0.16,
+                    0.155,
                     0,
                     0.02,
                     0
             ))
             .translationalPIDFSwitch(4)
             .secondaryTranslationalPIDFCoefficients(new PIDFCoefficients(
-                    0.16,
+                    0.155,
                     0,
                     0.02,
                     0
@@ -49,14 +49,14 @@ public class PedroPathingConstants {
                     0.02
             ))
             .drivePIDFCoefficients(new FilteredPIDFCoefficients(
-                    0.017,
+                    0.014,
                     0,
                     0.000001,
                     0.6,
                     0.002
             ))
             .secondaryDrivePIDFCoefficients(new FilteredPIDFCoefficients(
-                    0.017,
+                    0.014,
                     0,
                     0.000001,
                     0.6,

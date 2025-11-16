@@ -66,9 +66,9 @@ public class Auto_9_0 extends LinearOpMode {
     public static double shoot3Y = 103.5;
     public static double shoot3Heading = 150;
 
-    public static double move3X = 60;
-    public static double move3Y = 108;
-    public static double moveHeading = 145;
+    public static double move3X = 43;
+    public static double move3Y = 72;
+    public static double moveHeading = 150;
 
 
 

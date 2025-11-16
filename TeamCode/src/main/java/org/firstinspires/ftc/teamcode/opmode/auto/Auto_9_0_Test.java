@@ -38,12 +38,12 @@ public class Auto_9_0_Test extends LinearOpMode {
     public static double shoot0Heading = 149;
 
 
-    public static double intake11X = 43;
-    public static double intake11Y = 84;
+    public static double intake11X = 49;
+    public static double intake11Y = 87;
     public static double intake11Heading = 180;
 
-    public static double intake12X = 23;
-    public static double intake12Y = 84;
+    public static double intake12X = 23.5;
+    public static double intake12Y = 87;
     public static double intake12Heading = 180;
 
 
