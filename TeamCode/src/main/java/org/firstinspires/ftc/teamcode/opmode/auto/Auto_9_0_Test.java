@@ -52,9 +52,13 @@ public class Auto_9_0_Test extends LinearOpMode {
     public static double shoot1Heading = 150;
 
 
-    public static double intake2X = 19;
-    public static double intake2Y = 60;
-    public static double intake2Heading = 180;
+    public static double intake21X = 49;
+    public static double intake21Y = 59.5;
+    public static double intake21Heading = 180;
+
+    public static double intake22X = 23.5;
+    public static double intake22Y = 59.5;
+    public static double intake22Heading = 180;
 
 
     public static double shoot2X = 52.5;
@@ -62,9 +66,13 @@ public class Auto_9_0_Test extends LinearOpMode {
     public static double shoot2Heading = 150;
 
 
-    public static double intake3X = 20;
-    public static double intake3Y = 35.6;
-    public static double intake3Heading = 180;
+    public static double intake31X = 49;
+    public static double intake31Y = 35.6;
+    public static double intake31Heading = 180;
+
+    public static double intake32X = 23.5;
+    public static double intake32Y = 35.6;
+    public static double intake32Heading = 180;
 
     public static double shoot3X = 52.5;
     public static double shoot3Y = 103.5;
@@ -96,9 +104,11 @@ public class Auto_9_0_Test extends LinearOpMode {
     public static Path intake11Path;
     public static Path intake12Path;
     public static Path shoot1Path;
-    public static Path intake2Path;
+    public static Path intake21Path;
+    public static Path intake22Path;
     public static Path shoot2Path;
-    public static Path intake3Path;
+    public static Path intake31Path;
+    public static Path intake32Path;
     public static Path shoot3Path;
     public static Path movePath;
 
@@ -110,9 +120,11 @@ public class Auto_9_0_Test extends LinearOpMode {
         Pose intake11Pose = new Pose(intake11X, intake11Y, Math.toRadians(intake11Heading));
         Pose intake12Pose = new Pose(intake12X, intake12Y, Math.toRadians(intake12Heading));
         Pose shoot1Pose = new Pose(shoot1X, shoot1Y, Math.toRadians(shoot1Heading));
-        Pose intake2Pose = new Pose(intake2X, intake2Y, Math.toRadians(intake2Heading));
+        Pose intake21Pose = new Pose(intake21X, intake21Y, Math.toRadians(intake21Heading));
+        Pose intake22Pose = new Pose(intake22X, intake22Y, Math.toRadians(intake22Heading));
         Pose shoot2Pose = new Pose(shoot2X, shoot2Y, Math.toRadians(shoot2Heading));
-        Pose intake3Pose = new Pose(intake3X, intake3Y, Math.toRadians(intake3Heading));
+        Pose intake31Pose = new Pose(intake31X, intake31Y, Math.toRadians(intake31Heading));
+        Pose intake32Pose = new Pose(intake32X, intake32Y, Math.toRadians(intake32Heading));
         Pose shoot3Pose = new Pose(shoot3X, shoot3Y, Math.toRadians(shoot3Heading));
         Pose movePose = new Pose(move3X, move3Y, Math.toRadians(moveHeading));
 
@@ -130,11 +142,13 @@ public class Auto_9_0_Test extends LinearOpMode {
         shoot0Path = buildPath(startPose, shoot0Pose);
         intake11Path = buildPath(shoot0Pose, intake11Pose, 0.5);
         intake12Path = buildPath(intake11Pose, intake12Pose);
-        shoot1Path = buildPath(intake12Pose, shoot1Pose);
-        intake2Path = buildCurve(shoot1Pose, intake2Pose, intakeControl2, intakeControl22);
-        shoot2Path = buildPath(intake2Pose, shoot2Pose, 0.5);
-        intake3Path = buildCurve(shoot2Pose, intake3Pose, intakeControl3, intakeControl32);
-        shoot3Path = buildPath(intake3Pose, shoot3Pose, 0.5);
+        shoot1Path = buildPath(intake12Pose, shoot1Pose, 0.5);
+        intake21Path = buildPath(shoot1Pose, intake21Pose, 0.5);
+        intake22Path = buildPath(intake21Pose, intake22Pose);
+        shoot2Path = buildPath(intake22Pose, shoot2Pose, 0.5);
+        intake31Path = buildPath(shoot2Pose, intake31Pose, 0.5);
+        intake32Path = buildPath(intake31Pose, intake32Pose);
+        shoot3Path = buildPath(intake32Pose, shoot3Pose, 0.5);
         movePath = buildPath(shoot3Pose, movePose);
 
 
@@ -181,43 +195,45 @@ public class Auto_9_0_Test extends LinearOpMode {
                         new PathCommand(intake11Path),
                         new PathCommand(intake12Path),
 
-                        new PathCommand(shoot1Path)
+                        new PathCommand(shoot1Path),
 
-//                        new ArtifactShootCommand(),
-//                        new WaitCommand(400),
-//                        new ArtifactLowerPowerShootCommand(),
-//                        new WaitCommand(800),
-//                        new ArtifactShootCommand(),
-//                        new ArtifactInCommand(),
-//
-//                        new StopStateCommand(ShooterSubsystem.StopState.REVERSE),
-//
-//                        new PathCommand(intake2Path),
-//
-//                        new PathCommand(shoot2Path),
-//
-//                        new ArtifactShootCommand(),
-//                        new WaitCommand(400),
-//                        new ArtifactLowerPowerShootCommand(),
-//                        new WaitCommand(800),
-//                        new ArtifactShootCommand(),
-//                        new ArtifactInCommand(),
-//
-//                        new StopStateCommand(ShooterSubsystem.StopState.REVERSE),
-//
-//
-//                        new PathCommand(intake3Path),
-//
-//                        new PathCommand(shoot3Path),
-//
-//                        new ArtifactShootCommand(),
-//                        new WaitCommand(400),
-//                        new ArtifactLowerPowerShootCommand(),
-//                        new WaitCommand(800),
-//                        new ArtifactShootCommand(),
-//                        new ArtifactInCommand(),
-//
-//                        new PathCommand(movePath)
+                        new ArtifactShootCommand(),
+                        new WaitCommand(400),
+                        new ArtifactLowerPowerShootCommand(),
+                        new WaitCommand(800),
+                        new ArtifactShootCommand(),
+                        new ArtifactInCommand(),
+
+                        new StopStateCommand(ShooterSubsystem.StopState.REVERSE),
+
+                        new PathCommand(intake21Path),
+                        new PathCommand(intake22Path),
+
+                        new PathCommand(shoot2Path),
+
+                        new ArtifactShootCommand(),
+                        new WaitCommand(400),
+                        new ArtifactLowerPowerShootCommand(),
+                        new WaitCommand(800),
+                        new ArtifactShootCommand(),
+                        new ArtifactInCommand(),
+
+                        new StopStateCommand(ShooterSubsystem.StopState.REVERSE),
+
+
+                        new PathCommand(intake31Path),
+                        new PathCommand(intake32Path),
+
+                        new PathCommand(shoot3Path),
+
+                        new ArtifactShootCommand(),
+                        new WaitCommand(400),
+                        new ArtifactLowerPowerShootCommand(),
+                        new WaitCommand(800),
+                        new ArtifactShootCommand(),
+                        new ArtifactInCommand(),
+
+                        new PathCommand(movePath)
                 )
         );
 

@@ -17,14 +17,12 @@ import org.firstinspires.ftc.teamcode.commands.advancedcommand.ArtifactShootComm
 import org.firstinspires.ftc.teamcode.commands.drivecommand.PathCommand;
 import org.firstinspires.ftc.teamcode.commands.subsystem.StopStateCommand;
 import org.firstinspires.ftc.teamcode.hardware.Robot;
-import org.firstinspires.ftc.teamcode.hardware.subsystems.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.hardware.subsystems.ShooterSubsystem;
 import org.firstinspires.ftc.teamcode.util.Globals;
-import org.firstinspires.ftc.teamcode.util.Constants;
 
 @Autonomous(name = "Auto_6_0_Blue :(")
 @Configurable
-public class Auto_9_0 extends LinearOpMode {
+public class Auto_9_0_Blue extends LinearOpMode {
 
 
 
