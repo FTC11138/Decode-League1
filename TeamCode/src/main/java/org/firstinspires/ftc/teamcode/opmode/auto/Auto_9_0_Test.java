@@ -81,23 +81,7 @@ public class Auto_9_0_Test extends LinearOpMode {
     public static double move3X = 60;
     public static double move3Y = 108;
     public static double moveHeading = 145;
-
-
-
-
-    // control points for intaking
-    public static double control1X = 80;
-    public static double control1Y = 84;
-
-    public static double control2X = 69;
-    public static double control2Y = 76;
-    public static double control22X = 79;
-    public static double control22Y = 56;
-
-    public static double control3X = 89.7;
-    public static double control3Y = 31.5;
-    public static double control32X = 66.5;
-    public static double control32Y = 34;
+    
 
 
     public static Path shoot0Path;
@@ -128,15 +112,6 @@ public class Auto_9_0_Test extends LinearOpMode {
         Pose shoot3Pose = new Pose(shoot3X, shoot3Y, Math.toRadians(shoot3Heading));
         Pose movePose = new Pose(move3X, move3Y, Math.toRadians(moveHeading));
 
-
-
-        Pose intakeControl1 = new Pose(control1X, control1Y);
-
-        Pose intakeControl2 = new Pose(control2X, control2Y);
-        Pose intakeControl22 = new Pose(control22X, control22Y);
-
-        Pose intakeControl3 = new Pose(control3X, control3Y);
-        Pose intakeControl32 = new Pose(control32X, control32Y);
 
 
         shoot0Path = buildPath(startPose, shoot0Pose);
