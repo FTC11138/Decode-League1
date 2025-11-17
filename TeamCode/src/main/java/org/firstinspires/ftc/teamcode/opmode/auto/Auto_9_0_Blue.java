@@ -18,6 +18,7 @@ import org.firstinspires.ftc.teamcode.commands.drivecommand.PathCommand;
 import org.firstinspires.ftc.teamcode.commands.subsystem.StopStateCommand;
 import org.firstinspires.ftc.teamcode.hardware.Robot;
 import org.firstinspires.ftc.teamcode.hardware.subsystems.ShooterSubsystem;
+import org.firstinspires.ftc.teamcode.util.Constants;
 import org.firstinspires.ftc.teamcode.util.Globals;
 
 @Autonomous(name = "Auto_6_0_Blue :(")
@@ -43,7 +44,7 @@ public class Auto_9_0_Blue extends LinearOpMode {
 
     public static double shoot1X = 52.5;
     public static double shoot1Y = 103.5;
-    public static double shoot1Heading = 150;
+    public static double shoot1Heading = 140;
 
 
     public static double intake2X = 19;
@@ -53,7 +54,7 @@ public class Auto_9_0_Blue extends LinearOpMode {
 
     public static double shoot2X = 52.5;
     public static double shoot2Y = 103.5;
-    public static double shoot2Heading = 150;
+    public static double shoot2Heading = 140;
 
 
     public static double intake3X = 20;
@@ -62,7 +63,19 @@ public class Auto_9_0_Blue extends LinearOpMode {
 
     public static double shoot3X = 52.5;
     public static double shoot3Y = 103.5;
-    public static double shoot3Heading = 150;
+    public static double shoot3Heading = 140;
+
+    public static double intake41X = 15;
+    public static double intake41Y = 41.4;
+    public static double intake41Heading = 270;
+
+    public static double intake42X = 15;
+    public static double intake42Y = 12.8;
+    public static double intake42Heading = 270;
+
+    public static double shoot4X = 52.5;
+    public static double shoot4Y = 103.5;
+    public static double shoot4Heading = 145;
 
     public static double move3X = 43;
     public static double move3Y = 72;
@@ -80,10 +93,14 @@ public class Auto_9_0_Blue extends LinearOpMode {
     public static double control22X = 79;
     public static double control22Y = 56;
 
-    public static double control3X = 89.7;
-    public static double control3Y = 31.5;
-    public static double control32X = 66.5;
-    public static double control32Y = 34;
+    public static double controlshoot2X = 64;
+    public static double controlshoot2Y = 58;
+
+
+    public static double control3X = 84;
+    public static double control3Y = 24.5;
+    public static double control32X = 46.4;
+    public static double control32Y = 39;
 
 
     public static Path shoot0Path;
@@ -93,6 +110,9 @@ public class Auto_9_0_Blue extends LinearOpMode {
     public static Path shoot2Path;
     public static Path intake3Path;
     public static Path shoot3Path;
+    public static Path intake41Path;
+    public static Path intake42Path;
+    public static Path shoot4Path;
     public static Path movePath;
 
 
@@ -106,6 +126,9 @@ public class Auto_9_0_Blue extends LinearOpMode {
         Pose shoot2Pose = new Pose(shoot2X, shoot2Y, Math.toRadians(shoot2Heading));
         Pose intake3Pose = new Pose(intake3X, intake3Y, Math.toRadians(intake3Heading));
         Pose shoot3Pose = new Pose(shoot3X, shoot3Y, Math.toRadians(shoot3Heading));
+        Pose intake41Pose = new Pose(intake41X, intake41Y, Math.toRadians(intake41Heading));
+        Pose intake42Pose = new Pose(intake42X, intake42Y, Math.toRadians(intake42Heading));
+        Pose shoot4Pose = new Pose(shoot4X, shoot4Y, Math.toRadians(shoot4Heading));
         Pose movePose = new Pose(move3X, move3Y, Math.toRadians(moveHeading));
 
 
@@ -114,6 +137,9 @@ public class Auto_9_0_Blue extends LinearOpMode {
 
         Pose intakeControl2 = new Pose(control2X, control2Y);
         Pose intakeControl22 = new Pose(control22X, control22Y);
+        Pose shootControl2 = new Pose(controlshoot2X, controlshoot2Y);
+
+
 
         Pose intakeControl3 = new Pose(control3X, control3Y);
         Pose intakeControl32 = new Pose(control32X, control32Y);
@@ -123,9 +149,12 @@ public class Auto_9_0_Blue extends LinearOpMode {
         intake1Path = buildCurve(shoot0Pose, intake1Pose, intakeControl1);
         shoot1Path = buildPath(intake1Pose, shoot1Pose, 0.5);
         intake2Path = buildCurve(shoot1Pose, intake2Pose, intakeControl2, intakeControl22);
-        shoot2Path = buildPath(intake2Pose, shoot2Pose, 0.5);
+        shoot2Path = buildCurve(intake2Pose, shoot2Pose,shootControl2, 0.5);
         intake3Path = buildCurve(shoot2Pose, intake3Pose, intakeControl3, intakeControl32);
         shoot3Path = buildPath(intake3Pose, shoot3Pose, 0.5);
+        intake41Path = buildPath(shoot3Pose, intake41Pose, 0.3);
+        intake42Path = buildPath(intake41Pose, intake42Pose);
+        shoot4Path = buildPath(intake42Pose, shoot4Pose, 0.5);
         movePath = buildPath(shoot3Pose, movePose);
 
 
@@ -136,7 +165,7 @@ public class Auto_9_0_Blue extends LinearOpMode {
         Robot robot = Robot.getInstance();
 
         Globals.IS_AUTO = true;
-
+        Constants.shootPower = 0.9;
         robot.initialize(hardwareMap, telemetry);
         CommandScheduler.getInstance().reset();
 
@@ -159,6 +188,8 @@ public class Auto_9_0_Blue extends LinearOpMode {
 
                         new WaitCommand(1000), // to let the launcher charge up
 
+
+                        new WaitCommand(350),
                         new ArtifactShootCommand(),
                         new WaitCommand(400),
                         new ArtifactLowerPowerShootCommand(),
@@ -172,7 +203,7 @@ public class Auto_9_0_Blue extends LinearOpMode {
                         new PathCommand(intake1Path),
 
                         new PathCommand(shoot1Path),
-
+                        new WaitCommand(350),
                         new ArtifactShootCommand(),
                         new WaitCommand(400),
                         new ArtifactLowerPowerShootCommand(),
@@ -185,7 +216,7 @@ public class Auto_9_0_Blue extends LinearOpMode {
                         new PathCommand(intake2Path),
 
                         new PathCommand(shoot2Path),
-
+                        new WaitCommand(350),
                         new ArtifactShootCommand(),
                         new WaitCommand(400),
                         new ArtifactLowerPowerShootCommand(),
@@ -199,13 +230,22 @@ public class Auto_9_0_Blue extends LinearOpMode {
                         new PathCommand(intake3Path),
 
                         new PathCommand(shoot3Path),
-
+                        new WaitCommand(350),
                         new ArtifactShootCommand(),
                         new WaitCommand(400),
                         new ArtifactLowerPowerShootCommand(),
                         new WaitCommand(800),
                         new ArtifactShootCommand(),
                         new ArtifactInCommand(),
+//
+//                        new PathCommand(intake41Path),
+//                        new PathCommand(intake42Path),
+//
+//                        new PathCommand(shoot4Path),
+//                        new WaitCommand(300),
+//                        new ArtifactShootCommand(),
+//                        new WaitCommand(400),
+//                        new ArtifactLowerPowerShootCommand(),
 
                         new PathCommand(movePath)
                 )
