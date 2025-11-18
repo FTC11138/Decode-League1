@@ -57,7 +57,7 @@ public class Auto_9_0_Red extends LinearOpMode {
     public static double shoot2Heading = 27;
 
 
-    public static double intake3X = 117;
+    public static double intake3X = 124;
     public static double intake3Y = 35.6;
     public static double intake3Heading = 180 - 180;
 
@@ -65,17 +65,17 @@ public class Auto_9_0_Red extends LinearOpMode {
     public static double shoot3Y = 103.5;
     public static double shoot3Heading = 27;
 
-    public static double intake41X = 144 - 15;
+    public static double intake41X = 144 - 20;
     public static double intake41Y = 41.4;
     public static double intake41Heading = 180 - 270;
 
-    public static double intake42X = 144 - 15;
+    public static double intake42X = 144 - 20;
     public static double intake42Y = 12.8;
     public static double intake42Heading = 180 - 270;
 
-    public static double shoot4X = 144 - 52.5;
-    public static double shoot4Y = 103.5;
-    public static double shoot4Heading = 180 - 150;
+    public static double shoot4X = 144 - 30;
+    public static double shoot4Y = 71;
+    public static double shoot4Heading = 180 - 145;
 
     public static double move3X = 144 - 43;
     public static double move3Y = 72;
@@ -235,17 +235,13 @@ public class Auto_9_0_Red extends LinearOpMode {
                         new WaitCommand(800),
                         new ArtifactShootCommand(),
                         new ArtifactInCommand(),
-//
-//                        new PathCommand(intake41Path),
-//                        new PathCommand(intake42Path),
-//
-//                        new PathCommand(shoot4Path),
-//                        new WaitCommand(300),
-//                        new ArtifactShootCommand(),
-//                        new WaitCommand(400),
-//                        new ArtifactLowerPowerShootCommand(),
+                        new ArtifactShootCommand(),
 
-                        new PathCommand(movePath)
+                        new PathCommand(intake41Path),
+                        new PathCommand(intake42Path),
+
+                        new PathCommand(shoot4Path)
+
                 )
         );
 
