@@ -28,7 +28,7 @@ public class Constants {
 
     /* -------------------------------------------- INTAKE CONSTANTS -------------------------------------------- */
 
-    public static double intakeInPower = -0.85;
+    public static double intakeInPower = -0.88;
     public static double intakeOutPower = 1;
 
     /* -------------------------------------------- SHOOT CONSTANTS -------------------------------------------- */

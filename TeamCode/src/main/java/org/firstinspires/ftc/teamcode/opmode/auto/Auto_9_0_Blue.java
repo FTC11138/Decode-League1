@@ -34,7 +34,7 @@ public class Auto_9_0_Blue extends LinearOpMode {
 
     public static double shoot0X = 52.5;
     public static double shoot0Y = 103.5;
-    public static double shoot0Heading = 149;
+    public static double shoot0Heading = 140;
 
 
     public static double intake1X = 23.5;
@@ -44,10 +44,10 @@ public class Auto_9_0_Blue extends LinearOpMode {
 
     public static double shoot1X = 52.5;
     public static double shoot1Y = 103.5;
-    public static double shoot1Heading = 140;
+    public static double shoot1Heading = 144;
 
 
-    public static double intake2X = 19;
+    public static double intake2X = 20;
     public static double intake2Y = 60;
     public static double intake2Heading = 180;
 
@@ -65,16 +65,16 @@ public class Auto_9_0_Blue extends LinearOpMode {
     public static double shoot3Y = 103.5;
     public static double shoot3Heading = 140;
 
-    public static double intake41X = 15;
+    public static double intake41X = 20;
     public static double intake41Y = 41.4;
     public static double intake41Heading = 270;
 
-    public static double intake42X = 15;
+    public static double intake42X = 20;
     public static double intake42Y = 12.8;
     public static double intake42Heading = 270;
 
-    public static double shoot4X = 52.5;
-    public static double shoot4Y = 103.5;
+    public static double shoot4X = 30;
+    public static double shoot4Y = 71;
     public static double shoot4Heading = 145;
 
     public static double move3X = 43;
@@ -152,7 +152,7 @@ public class Auto_9_0_Blue extends LinearOpMode {
         shoot2Path = buildCurve(intake2Pose, shoot2Pose,shootControl2, 0.5);
         intake3Path = buildCurve(shoot2Pose, intake3Pose, intakeControl3, intakeControl32);
         shoot3Path = buildPath(intake3Pose, shoot3Pose, 0.5);
-        intake41Path = buildPath(shoot3Pose, intake41Pose, 0.3);
+        intake41Path = buildPath(shoot3Pose, intake41Pose, 0.5);
         intake42Path = buildPath(intake41Pose, intake42Pose);
         shoot4Path = buildPath(intake42Pose, shoot4Pose, 0.5);
         movePath = buildPath(shoot3Pose, movePose);
@@ -196,6 +196,7 @@ public class Auto_9_0_Blue extends LinearOpMode {
                         new WaitCommand(800),
                         new ArtifactShootCommand(),
                         new ArtifactInCommand(),
+                        new ArtifactShootCommand(),
 
 
                         new StopStateCommand(ShooterSubsystem.StopState.REVERSE),
@@ -210,6 +211,7 @@ public class Auto_9_0_Blue extends LinearOpMode {
                         new WaitCommand(800),
                         new ArtifactShootCommand(),
                         new ArtifactInCommand(),
+                        new ArtifactShootCommand(),
 
                         new StopStateCommand(ShooterSubsystem.StopState.REVERSE),
 
@@ -223,6 +225,7 @@ public class Auto_9_0_Blue extends LinearOpMode {
                         new WaitCommand(800),
                         new ArtifactShootCommand(),
                         new ArtifactInCommand(),
+                        new ArtifactShootCommand(),
 
                         new StopStateCommand(ShooterSubsystem.StopState.REVERSE),
 
@@ -237,17 +240,12 @@ public class Auto_9_0_Blue extends LinearOpMode {
                         new WaitCommand(800),
                         new ArtifactShootCommand(),
                         new ArtifactInCommand(),
-//
-//                        new PathCommand(intake41Path),
-//                        new PathCommand(intake42Path),
-//
-//                        new PathCommand(shoot4Path),
-//                        new WaitCommand(300),
-//                        new ArtifactShootCommand(),
-//                        new WaitCommand(400),
-//                        new ArtifactLowerPowerShootCommand(),
+                        new ArtifactShootCommand(),
 
-                        new PathCommand(movePath)
+                        new PathCommand(intake41Path),
+                        new PathCommand(intake42Path),
+
+                        new PathCommand(shoot4Path)
                 )
         );
 
