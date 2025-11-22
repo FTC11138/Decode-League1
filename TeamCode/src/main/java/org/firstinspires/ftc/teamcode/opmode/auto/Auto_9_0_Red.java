@@ -32,8 +32,8 @@ public class Auto_9_0_Red extends LinearOpMode {
     public static double startHeading = 180 - 144;
 
 
-    public static double shoot0X = 144 - 52.5;
-    public static double shoot0Y = 103.5;
+    public static double shoot0X = 144 - 43;
+    public static double shoot0Y = 110;
     public static double shoot0Heading = 27;
 
 
@@ -42,8 +42,8 @@ public class Auto_9_0_Red extends LinearOpMode {
     public static double intake1Heading = 180 - 180;
 
 
-    public static double shoot1X = 144 - 52.5;
-    public static double shoot1Y = 103.5;
+    public static double shoot1X = 144 - 43;
+    public static double shoot1Y = 110;
     public static double shoot1Heading = 27;
 
 
@@ -52,8 +52,8 @@ public class Auto_9_0_Red extends LinearOpMode {
     public static double intake2Heading = 180 - 180;
 
 
-    public static double shoot2X = 144 - 52.5;
-    public static double shoot2Y = 103.5;
+    public static double shoot2X = 144 - 43;
+    public static double shoot2Y = 110;
     public static double shoot2Heading = 27;
 
 
@@ -61,8 +61,8 @@ public class Auto_9_0_Red extends LinearOpMode {
     public static double intake3Y = 35.6;
     public static double intake3Heading = 180 - 180;
 
-    public static double shoot3X = 144 - 52.5;
-    public static double shoot3Y = 103.5;
+    public static double shoot3X = 144 - 43;
+    public static double shoot3Y = 110;
     public static double shoot3Heading = 27;
 
     public static double intake41X = 144 - 15;
@@ -73,8 +73,8 @@ public class Auto_9_0_Red extends LinearOpMode {
     public static double intake42Y = 12.8;
     public static double intake42Heading = 180 - 270;
 
-    public static double shoot4X = 144 - 52.5;
-    public static double shoot4Y = 103.5;
+    public static double shoot4X = 144 - 43;
+    public static double shoot4Y = 110;
     public static double shoot4Heading = 180 - 150;
 
     public static double move3X = 144 - 43;
@@ -85,8 +85,8 @@ public class Auto_9_0_Red extends LinearOpMode {
 
 
     // control points for intaking
-    public static double control1X = 144 - 80;
-    public static double control1Y = 84;
+    public static double control1X = 144 - 98;
+    public static double control1Y = 82;
 
     public static double control2X = 144 - 69;
     public static double control2Y = 76;
