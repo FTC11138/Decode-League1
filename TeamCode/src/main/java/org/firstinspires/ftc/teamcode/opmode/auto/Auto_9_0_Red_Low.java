@@ -1,8 +1,7 @@
 package org.firstinspires.ftc.teamcode.opmode.auto;
 
-import static org.firstinspires.ftc.teamcode.opmode.auto.AutonomousMethods.buildCurve;
 import static org.firstinspires.ftc.teamcode.opmode.auto.AutonomousMethods.buildPath;
-
+import static org.firstinspires.ftc.teamcode.opmode.auto.AutonomousMethods.buildCurve;
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
@@ -22,70 +21,87 @@ import org.firstinspires.ftc.teamcode.hardware.subsystems.ShooterSubsystem;
 import org.firstinspires.ftc.teamcode.util.Constants;
 import org.firstinspires.ftc.teamcode.util.Globals;
 
-@Autonomous(name = "Auto_3_0_Red_Low ;-;")
+@Autonomous(name = "Auto_6_0_Red muyReal")
 @Configurable
 public class Auto_9_0_Red_Low extends LinearOpMode {
 
 
 
-    public static double startX = 144 - 20.5;
+    public static double startX = 144-  20.5;
     public static double startY = 123;
     public static double startHeading = 180 - 144;
 
 
-    public static double shoot0X = 144 - 52.5;
-    public static double shoot0Y = 103.5;
-    public static double shoot0Heading = 180 - 149;
+    public static double shoot0X = 144 - 43;
+    public static double shoot0Y = 108;
+    public static double shoot0Heading = 180 - 140;
 
 
     public static double intake1X = 144 - 23.5;
-    public static double intake1Y = 84;
+    public static double intake1Y = 86;
     public static double intake1Heading = 180 - 180;
 
 
-    public static double shoot1X = 144 - 52.5;
-    public static double shoot1Y = 103.5;
-    public static double shoot1Heading = 180 - 150;
+    public static double shoot1X = 144 - 43;
+    public static double shoot1Y = 108;
+    public static double shoot1Heading = 180 - 140;
 
 
     public static double intake2X = 144 - 19;
-    public static double intake2Y = 60;
+    public static double intake2Y = 62;
     public static double intake2Heading = 180 - 180;
 
 
-    public static double shoot2X = 144 - 52.5;
-    public static double shoot2Y = 103.5;
-    public static double shoot2Heading = 180 - 150;
+    public static double shoot2X = 144 - 43;
+    public static double shoot2Y = 108;
+    public static double shoot2Heading = 180 - 140;
 
 
-    public static double intake3X = 144 - 20;
-    public static double intake3Y = 35.6;
+    public static double intake3X = 144 - 22;
+    public static double intake3Y = 37;
     public static double intake3Heading = 180 - 180;
 
-    public static double shoot3X = 144 - 52.5;
-    public static double shoot3Y = 103.5;
-    public static double shoot3Heading = 180 - 150;
+    public static double shoot3X = 144 - 43;
+    public static double shoot3Y = 108;
+    public static double shoot3Heading = 180 - 140;
+//
+//    public static double intake4X = 12.7;
+//    public static double intake4Y = 11.4;
+//    public static double intake4Heading = 200;
+//
+//    public static double shoot4X = 43;
+//    public static double shoot4Y = 108;
+//    public static double shoot4Heading = 145;
 
     public static double move3X = 144 - 43;
-    public static double move3Y = 144 - 72;
-    public static double moveHeading = 180 - 145;
+    public static double move3Y = 72;
+    public static double moveHeading = 180 - 150;
 
 
 
 
     // control points for intaking
-    public static double control1X = 144 - 80;
-    public static double control1Y = 84;
+    public static double control1X = 144 - 98;
+    public static double control1Y = 82;
 
     public static double control2X = 144 - 69;
     public static double control2Y = 76;
     public static double control22X = 144 - 79;
     public static double control22Y = 56;
 
-    public static double control3X = 144 - 89.7;
-    public static double control3Y = 31.5;
-    public static double control32X = 144 - 66.5;
-    public static double control32Y = 34;
+    public static double controlshoot2X = 144 - 64;
+    public static double controlshoot2Y = 58;
+
+
+    public static double control3X = 144 - 84;
+    public static double control3Y = 24.5;
+    public static double control32X = 144 - 46.4;
+    public static double control32Y = 39;
+
+    public static double control4X = 144 - 80;
+    public static double control4Y = 48;
+
+
 
 
     public static Path shoot0Path;
@@ -95,6 +111,8 @@ public class Auto_9_0_Red_Low extends LinearOpMode {
     public static Path shoot2Path;
     public static Path intake3Path;
     public static Path shoot3Path;
+    public static Path intake4Path;
+    public static Path shoot4Path;
     public static Path movePath;
 
 
@@ -116,18 +134,27 @@ public class Auto_9_0_Red_Low extends LinearOpMode {
 
         Pose intakeControl2 = new Pose(control2X, control2Y);
         Pose intakeControl22 = new Pose(control22X, control22Y);
+        Pose shootControl2 = new Pose(controlshoot2X, controlshoot2Y);
+
+
 
         Pose intakeControl3 = new Pose(control3X, control3Y);
         Pose intakeControl32 = new Pose(control32X, control32Y);
 
+        Pose intakeControl4 = new Pose(control4X, control4Y);
+
+
+
 
         shoot0Path = buildPath(startPose, shoot0Pose);
-        intake1Path = buildCurve(shoot0Pose, intake1Pose, intakeControl1);
+        intake1Path = buildCurve(shoot0Pose, intake1Pose, intakeControl1, 0.5);
         shoot1Path = buildPath(intake1Pose, shoot1Pose, 0.5);
-        intake2Path = buildCurve(shoot1Pose, intake2Pose, intakeControl2, intakeControl22);
-        shoot2Path = buildPath(intake2Pose, shoot2Pose, 0.5);
-        intake3Path = buildCurve(shoot2Pose, intake3Pose, intakeControl3, intakeControl32);
+        intake2Path = buildCurve(shoot1Pose, intake2Pose, intakeControl2, intakeControl22, 0.5);
+        shoot2Path = buildCurve(intake2Pose, shoot2Pose,shootControl2, 0.5);
+        intake3Path = buildCurve(shoot2Pose, intake3Pose, intakeControl3, intakeControl32, 0.5);
         shoot3Path = buildPath(intake3Pose, shoot3Pose, 0.5);
+//        intake4Path = buildCurve(shoot3Pose, intake4Pose, intakeControl4, 0.3);
+//        shoot4Path = buildPath(intake4Pose, shoot4Pose, 0.5);
         movePath = buildPath(shoot3Pose, movePose);
 
 
@@ -138,9 +165,7 @@ public class Auto_9_0_Red_Low extends LinearOpMode {
         Robot robot = Robot.getInstance();
 
         Globals.IS_AUTO = true;
-
         Constants.shootPower = 0.76;
-
         robot.initialize(hardwareMap, telemetry);
         CommandScheduler.getInstance().reset();
 
@@ -161,8 +186,10 @@ public class Auto_9_0_Red_Low extends LinearOpMode {
                                 new ArtifactInCommand()
                         ),
 
-                        new WaitCommand(1300), // to let the launcher charge up
+                        new WaitCommand(1000), // to let the launcher charge up
 
+
+                        new WaitCommand(350),
                         new ArtifactShootCommand(),
                         new WaitCommand(400),
                         new ArtifactLowerPowerShootCommand(),
@@ -176,9 +203,7 @@ public class Auto_9_0_Red_Low extends LinearOpMode {
                         new PathCommand(intake1Path),
 
                         new PathCommand(shoot1Path),
-
-                        new WaitCommand(300),
-
+                        new WaitCommand(350),
                         new ArtifactShootCommand(),
                         new WaitCommand(400),
                         new ArtifactLowerPowerShootCommand(),
@@ -191,9 +216,7 @@ public class Auto_9_0_Red_Low extends LinearOpMode {
                         new PathCommand(intake2Path),
 
                         new PathCommand(shoot2Path),
-
-                        new WaitCommand(300),
-
+                        new WaitCommand(350),
                         new ArtifactShootCommand(),
                         new WaitCommand(400),
                         new ArtifactLowerPowerShootCommand(),
@@ -207,15 +230,25 @@ public class Auto_9_0_Red_Low extends LinearOpMode {
                         new PathCommand(intake3Path),
 
                         new PathCommand(shoot3Path),
-
-                        new WaitCommand(300),
-
+                        new WaitCommand(350),
                         new ArtifactShootCommand(),
                         new WaitCommand(400),
                         new ArtifactLowerPowerShootCommand(),
                         new WaitCommand(800),
                         new ArtifactShootCommand(),
                         new ArtifactInCommand(),
+
+                        new StopStateCommand(ShooterSubsystem.StopState.REVERSE),
+
+//                        new PathCommand(intake4Path),
+//
+//                        new PathCommand(shoot4Path),
+//                        new WaitCommand(350),
+//                        new ArtifactShootCommand(),
+//                        new WaitCommand(400),
+//                        new ArtifactLowerPowerShootCommand(),
+//                        new WaitCommand(800),
+//                        new ArtifactShootCommand(),
 
                         new PathCommand(movePath)
                 )

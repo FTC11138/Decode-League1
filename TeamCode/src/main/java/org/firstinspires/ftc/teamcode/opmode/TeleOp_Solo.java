@@ -13,6 +13,7 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
@@ -46,7 +47,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import java.util.function.Supplier;
 
-
+@Disabled
 @TeleOp (name = "SoloReal")
 public class TeleOp_Solo extends CommandOpMode {
 
