@@ -165,7 +165,7 @@ public class Auto_9_0_Blue extends LinearOpMode {
         Robot robot = Robot.getInstance();
 
         Globals.IS_AUTO = true;
-        Constants.shootPower = 0.76;
+        Constants.shootPower = 0.74;
         robot.initialize(hardwareMap, telemetry);
         CommandScheduler.getInstance().reset();
 

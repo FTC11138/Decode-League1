@@ -37,7 +37,7 @@ public class Auto_9_0_Red_Low extends LinearOpMode {
     public static double shoot0Heading = 180 - 140;
 
 
-    public static double intake1X = 144 - 23.5;
+    public static double intake1X = 115;
     public static double intake1Y = 86;
     public static double intake1Heading = 180 - 180;
 
@@ -47,7 +47,7 @@ public class Auto_9_0_Red_Low extends LinearOpMode {
     public static double shoot1Heading = 180 - 140;
 
 
-    public static double intake2X = 144 - 19;
+    public static double intake2X = 116;
     public static double intake2Y = 62;
     public static double intake2Heading = 180 - 180;
 
@@ -57,8 +57,8 @@ public class Auto_9_0_Red_Low extends LinearOpMode {
     public static double shoot2Heading = 180 - 140;
 
 
-    public static double intake3X = 144 - 22;
-    public static double intake3Y = 37;
+    public static double intake3X = 114;
+    public static double intake3Y = 36;
     public static double intake3Heading = 180 - 180;
 
     public static double shoot3X = 144 - 43;
@@ -165,7 +165,7 @@ public class Auto_9_0_Red_Low extends LinearOpMode {
         Robot robot = Robot.getInstance();
 
         Globals.IS_AUTO = true;
-        Constants.shootPower = 0.76;
+        Constants.shootPower = 0.74;
         robot.initialize(hardwareMap, telemetry);
         CommandScheduler.getInstance().reset();
 

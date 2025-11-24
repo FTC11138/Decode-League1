@@ -38,7 +38,7 @@ public class Auto_9_0_Red extends LinearOpMode {
     public static double shoot0Heading = 27;
 
 
-    public static double intake1X = 144 - 23.5;
+    public static double intake1X = 118;
     public static double intake1Y = 84;
     public static double intake1Heading = 180 - 180;
 
@@ -48,7 +48,7 @@ public class Auto_9_0_Red extends LinearOpMode {
     public static double shoot1Heading = 27;
 
 
-    public static double intake2X = 123;
+    public static double intake2X = 118;
     public static double intake2Y = 60;
     public static double intake2Heading = 180 - 180;
 
@@ -58,7 +58,7 @@ public class Auto_9_0_Red extends LinearOpMode {
     public static double shoot2Heading = 27;
 
 
-    public static double intake3X = 117;
+    public static double intake3X = 118;
     public static double intake3Y = 35.6;
     public static double intake3Heading = 180 - 180;
 
@@ -66,7 +66,7 @@ public class Auto_9_0_Red extends LinearOpMode {
     public static double shoot3Y = 110;
     public static double shoot3Heading = 27;
 
-    public static double intake41X = 144 - 15;
+    public static double intake41X = 118;
     public static double intake41Y = 41.4;
     public static double intake41Heading = 180 - 270;
 

@@ -31,7 +31,7 @@ public class Auto_Move extends LinearOpMode {
     public static double startHeading = 180;
 
 
-    public static double moveX = 20;
+    public static double moveX = 35;
     public static double moveY = 8;
     public static double moveHeading = 180;
 
