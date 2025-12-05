@@ -5,6 +5,7 @@ import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
+import org.firstinspires.ftc.teamcode.commands.subsystem.BlockerStateCommand;
 import org.firstinspires.ftc.teamcode.commands.subsystem.IntakeStateCommand;
 import org.firstinspires.ftc.teamcode.commands.subsystem.ShooterStateCommand;
 import org.firstinspires.ftc.teamcode.commands.subsystem.StopStateCommand;
@@ -18,9 +19,12 @@ public class ArtifactInCommand extends SequentialCommandGroup {
     public
     ArtifactInCommand() {
         super(
+                new BlockerStateCommand(ShooterSubsystem.BlockerState.BLOCKING),
+                new WaitCommand(100),
                 new IntakeStateCommand(IntakeSubsystem.IntakeState.IN),
-                new ShooterStateCommand(ShooterSubsystem.ShootState.SHOOT),
-                new StopStateCommand(ShooterSubsystem.StopState.REVERSE)
+                new StopStateCommand(ShooterSubsystem.StopState.READYSLOW),
+                new ShooterStateCommand(ShooterSubsystem.ShootState.SHOOT)
+
         );
     }
 }

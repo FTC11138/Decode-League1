@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.hardware.Robot;
@@ -21,18 +22,28 @@ public class ShooterSubsystem extends RE_SubsystemBase {
 
     private final DcMotorEx stopMotor;
 
+    private final Servo blockerServo;
+
 
     public enum ShootState {
         LOWERPOWER,
         SHOOT,
-        STOP }
+        STOP
+    }
     public enum StopState {
         READY,
+        READYSLOW,
         STOP,
-        REVERSE }
+        REVERSE
+    }
+    public enum BlockerState {
+        BLOCKING,
+        OPEN
+    }
 
     public ShootState shootState;
     public StopState stopState;
+    public BlockerState blockerState;
 
 
     private PIDController shooterPID = new PIDController(0, 0, 0);
@@ -44,9 +55,11 @@ public class ShooterSubsystem extends RE_SubsystemBase {
 
     private double targetVelocity = 0;
 
-    public ShooterSubsystem(HardwareMap hardwareMap, String shootroller, String stoproller) {
+    public ShooterSubsystem(HardwareMap hardwareMap, String shootroller, String stoproller, String blockerservo) {
         shootMotor = hardwareMap.get(DcMotorEx.class, shootroller);
         stopMotor = hardwareMap.get(DcMotorEx.class, stoproller);
+        blockerServo = hardwareMap.get(Servo.class, blockerservo);
+
 
         shootMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         stopMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -86,6 +99,10 @@ public class ShooterSubsystem extends RE_SubsystemBase {
         stopState = newState;
     }
 
+    public void updateBlockerState(BlockerState newState) {
+        blockerState = newState;
+    }
+
     @Override
     public void periodic() {
 
@@ -114,11 +131,23 @@ public class ShooterSubsystem extends RE_SubsystemBase {
             case READY:
                 stopMotor.setPower(Constants.readyPower);
                 break;
+            case READYSLOW:
+                stopMotor.setPower(Constants.readySlowPower);
+                break;
             case STOP:
                 stopMotor.setPower(0);
                 break;
             case REVERSE:
                 stopMotor.setPower(Constants.reverseStopPower);
+                break;
+        }
+
+        switch (blockerState) {
+            case BLOCKING:
+                blockerServo.setPosition(Constants.blockerBlock);
+                break;
+            case OPEN:
+                blockerServo.setPosition(Constants.blockerOpen);
                 break;
         }
     }

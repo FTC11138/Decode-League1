@@ -15,13 +15,12 @@ import org.firstinspires.ftc.teamcode.hardware.subsystems.ShooterSubsystem;
 import org.firstinspires.ftc.teamcode.util.Constants;
 import org.firstinspires.ftc.teamcode.util.Globals;
 
-public class ArtifactShootCommand extends SequentialCommandGroup {
+public class EverythingStopCommand extends SequentialCommandGroup {
     public
-    ArtifactShootCommand() {
+    EverythingStopCommand() {
         super(
-                new BlockerStateCommand(ShooterSubsystem.BlockerState.OPEN),
-                new StopStateCommand(ShooterSubsystem.StopState.READY),
-                new IntakeStateCommand(IntakeSubsystem.IntakeState.IN)
+                new StopStateCommand(ShooterSubsystem.StopState.STOP),
+                new IntakeStateCommand(IntakeSubsystem.IntakeState.STOP)
 
 
 

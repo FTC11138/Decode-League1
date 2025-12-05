@@ -62,7 +62,7 @@ public class Robot {
 
         intakeSubsystem = new IntakeSubsystem(this.hardwareMap, names.intakeroller);
 
-        shooterSubsystem = new ShooterSubsystem(this.hardwareMap, names.shootroller, names.stoproller);
+        shooterSubsystem = new ShooterSubsystem(this.hardwareMap, names.shootroller, names.stoproller, names.blockerServo);
     }
 
     public CameraSubsystem.Obelisk getObelisk() {

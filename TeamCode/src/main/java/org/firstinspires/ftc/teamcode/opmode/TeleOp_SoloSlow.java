@@ -16,7 +16,9 @@ import com.pedropathing.paths.PathChain;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
+import org.firstinspires.ftc.teamcode.commands.advancedcommand.ArtifactInCommand;
 import org.firstinspires.ftc.teamcode.commands.advancedcommand.ArtifactShootCommand;
+import org.firstinspires.ftc.teamcode.commands.advancedcommand.EverythingStopCommand;
 import org.firstinspires.ftc.teamcode.commands.subsystem.IntakeStateCommand;
 import org.firstinspires.ftc.teamcode.commands.subsystem.ShooterStateCommand;
 import org.firstinspires.ftc.teamcode.hardware.Robot;
@@ -156,7 +158,7 @@ public class TeleOp_SoloSlow extends CommandOpMode {
         }
 
         if(rightBumper && !rightBumper) {
-            CommandScheduler.getInstance().schedule((new IntakeStateCommand(IntakeSubsystem.IntakeState.OUT)));
+            CommandScheduler.getInstance().schedule(new EverythingStopCommand());
         }
 
 
@@ -186,7 +188,7 @@ public class TeleOp_SoloSlow extends CommandOpMode {
 
         if (leftTrigger && !lastLeftTrigger) {
 //            robot.follower.startTeleopDrive();
-            CommandScheduler.getInstance().schedule(new IntakeStateCommand(IntakeSubsystem.IntakeState.IN));
+            CommandScheduler.getInstance().schedule(new ArtifactInCommand());
 
         }
 

@@ -15,6 +15,8 @@ public class Configuration {
     public final String shootroller = "shootroller";
     public final String stoproller = "stoproller";
 
+    public final String blockerServo = "blockerservo";
+
 
 
 
