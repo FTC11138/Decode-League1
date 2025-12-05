@@ -46,7 +46,8 @@ public class CameraSubsystem extends RE_SubsystemBase {
         PPG,
         PGP,
         GPP,
-        PPP }
+        PPP
+    }
 
     public CameraSubsystem(HardwareMap hardwareMap, String limelightName) {
         this.limelight = hardwareMap.get(Limelight3A.class, limelightName);

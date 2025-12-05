@@ -20,12 +20,9 @@ public class ArtifactShootCommand extends SequentialCommandGroup {
     ArtifactShootCommand() {
         super(
                 new BlockerStateCommand(ShooterSubsystem.BlockerState.OPEN),
+                new WaitCommand(100),
                 new StopStateCommand(ShooterSubsystem.StopState.READY),
                 new IntakeStateCommand(IntakeSubsystem.IntakeState.IN)
-
-
-
-
         );
     }
 }
