@@ -15,8 +15,12 @@ import org.firstinspires.ftc.teamcode.commands.advancedcommand.ArtifactInCommand
 import org.firstinspires.ftc.teamcode.commands.advancedcommand.ArtifactLowerPowerShootCommand;
 import org.firstinspires.ftc.teamcode.commands.advancedcommand.ArtifactShootCommand;
 import org.firstinspires.ftc.teamcode.commands.drivecommand.PathCommand;
+import org.firstinspires.ftc.teamcode.commands.subsystem.BlockerStateCommand;
+import org.firstinspires.ftc.teamcode.commands.subsystem.IntakeStateCommand;
+import org.firstinspires.ftc.teamcode.commands.subsystem.ShooterStateCommand;
 import org.firstinspires.ftc.teamcode.commands.subsystem.StopStateCommand;
 import org.firstinspires.ftc.teamcode.hardware.Robot;
+import org.firstinspires.ftc.teamcode.hardware.subsystems.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.hardware.subsystems.ShooterSubsystem;
 import org.firstinspires.ftc.teamcode.util.Constants;
 import org.firstinspires.ftc.teamcode.util.Globals;
@@ -34,7 +38,7 @@ public class Auto_9_0_Blue extends LinearOpMode {
 
     public static double shoot0X = 43;
     public static double shoot0Y = 108;
-    public static double shoot0Heading = 140;
+    public static double shoot0Heading = 142;
 
 
     public static double intake1X = 23.5;
@@ -44,26 +48,26 @@ public class Auto_9_0_Blue extends LinearOpMode {
 
     public static double shoot1X = 43;
     public static double shoot1Y = 108;
-    public static double shoot1Heading = 140;
+    public static double shoot1Heading = 142;
 
 
-    public static double intake2X = 19;
+    public static double intake2X = 20.5;
     public static double intake2Y = 60;
     public static double intake2Heading = 180;
 
 
     public static double shoot2X = 43;
     public static double shoot2Y = 108;
-    public static double shoot2Heading = 140;
+    public static double shoot2Heading = 142;
 
 
-    public static double intake3X = 20;
+    public static double intake3X = 20.5;
     public static double intake3Y = 35.6;
     public static double intake3Heading = 180;
 
     public static double shoot3X = 43;
     public static double shoot3Y = 108;
-    public static double shoot3Heading = 140;
+    public static double shoot3Heading = 142;
 //
 //    public static double intake4X = 12.7;
 //    public static double intake4Y = 11.4;
@@ -165,7 +169,7 @@ public class Auto_9_0_Blue extends LinearOpMode {
         Robot robot = Robot.getInstance();
 
         Globals.IS_AUTO = true;
-        Constants.shootPower = 0.74;
+        Constants.shootPower = 0.7;
         robot.initialize(hardwareMap, telemetry);
         CommandScheduler.getInstance().reset();
 
@@ -183,62 +187,87 @@ public class Auto_9_0_Blue extends LinearOpMode {
         CommandScheduler.getInstance().schedule(
                 new SequentialCommandGroup(
                         new PathCommand(shoot0Path).alongWith(
-                                new ArtifactInCommand()
+                                new ShooterStateCommand(ShooterSubsystem.ShootState.SHOOT),
+                                new BlockerStateCommand(ShooterSubsystem.BlockerState.OPEN),
+
+                                new IntakeStateCommand(IntakeSubsystem.IntakeState.STOP),
+                                new StopStateCommand(ShooterSubsystem.StopState.REVERSE)
                         ),
 
                         new WaitCommand(1000), // to let the launcher charge up
 
 
-                        new WaitCommand(350),
+                        new WaitCommand(400),
                         new ArtifactShootCommand(),
                         new WaitCommand(400),
-                        new ArtifactLowerPowerShootCommand(),
-                        new WaitCommand(800),
                         new ArtifactShootCommand(),
-                        new ArtifactInCommand(),
-
-
+                        new WaitCommand(400),
+                        new ArtifactShootCommand(),
+                        new IntakeStateCommand(IntakeSubsystem.IntakeState.IN),
                         new StopStateCommand(ShooterSubsystem.StopState.REVERSE),
+                        new BlockerStateCommand(ShooterSubsystem.BlockerState.BLOCKING),
 
                         new PathCommand(intake1Path),
 
+                        new SequentialCommandGroup(
+                                new IntakeStateCommand(IntakeSubsystem.IntakeState.STOP),
+                                new WaitCommand(150),
+                                new BlockerStateCommand(ShooterSubsystem.BlockerState.OPEN)
+                        ),
+
+
+
                         new PathCommand(shoot1Path),
-                        new WaitCommand(350),
+                        new WaitCommand(400),
                         new ArtifactShootCommand(),
                         new WaitCommand(400),
-                        new ArtifactLowerPowerShootCommand(),
-                        new WaitCommand(800),
                         new ArtifactShootCommand(),
-                        new ArtifactInCommand(),
-
+                        new WaitCommand(400),
+                        new ArtifactShootCommand(),
+                        new IntakeStateCommand(IntakeSubsystem.IntakeState.IN),
                         new StopStateCommand(ShooterSubsystem.StopState.REVERSE),
+                        new BlockerStateCommand(ShooterSubsystem.BlockerState.BLOCKING),
+
 
                         new PathCommand(intake2Path),
 
+                        new SequentialCommandGroup(
+                                new IntakeStateCommand(IntakeSubsystem.IntakeState.STOP),
+                                new WaitCommand(150),
+                                new BlockerStateCommand(ShooterSubsystem.BlockerState.OPEN)
+                        ),
+
                         new PathCommand(shoot2Path),
-                        new WaitCommand(350),
+                        new WaitCommand(400),
                         new ArtifactShootCommand(),
                         new WaitCommand(400),
-                        new ArtifactLowerPowerShootCommand(),
-                        new WaitCommand(800),
                         new ArtifactShootCommand(),
-                        new ArtifactInCommand(),
-
+                        new WaitCommand(400),
+                        new ArtifactShootCommand(),
+                        new IntakeStateCommand(IntakeSubsystem.IntakeState.IN),
                         new StopStateCommand(ShooterSubsystem.StopState.REVERSE),
+                        new BlockerStateCommand(ShooterSubsystem.BlockerState.BLOCKING),
 
 
                         new PathCommand(intake3Path),
+
+                        new SequentialCommandGroup(
+                                new IntakeStateCommand(IntakeSubsystem.IntakeState.STOP),
+                                new WaitCommand(150),
+                                new BlockerStateCommand(ShooterSubsystem.BlockerState.OPEN)
+                        ),
 
                         new PathCommand(shoot3Path),
                         new WaitCommand(350),
                         new ArtifactShootCommand(),
                         new WaitCommand(400),
-                        new ArtifactLowerPowerShootCommand(),
+                        new ArtifactShootCommand(),
                         new WaitCommand(800),
                         new ArtifactShootCommand(),
-                        new ArtifactInCommand(),
-
+                        new IntakeStateCommand(IntakeSubsystem.IntakeState.IN),
                         new StopStateCommand(ShooterSubsystem.StopState.REVERSE),
+                        new BlockerStateCommand(ShooterSubsystem.BlockerState.BLOCKING),
+
 
 //                        new PathCommand(intake4Path),
 //
