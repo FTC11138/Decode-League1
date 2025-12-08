@@ -19,10 +19,19 @@ public class ArtifactShootCommand extends SequentialCommandGroup {
     public
     ArtifactShootCommand() {
         super(
-                new BlockerStateCommand(ShooterSubsystem.BlockerState.OPEN),
-                new WaitCommand(100),
+                new ConditionalCommand(
+                        new SequentialCommandGroup(
+                                new BlockerStateCommand(ShooterSubsystem.BlockerState.OPEN),
+                                new WaitCommand(500)
+                        ),
+                        new InstantCommand(),
+                        () -> Robot.getInstance().shooterSubsystem.blockerState != ShooterSubsystem.BlockerState.OPEN
+                ),
                 new StopStateCommand(ShooterSubsystem.StopState.READY),
-                new IntakeStateCommand(IntakeSubsystem.IntakeState.IN)
+                new IntakeStateCommand(IntakeSubsystem.IntakeState.IN),
+                new WaitCommand(Constants.shootDelay),
+                new StopStateCommand(ShooterSubsystem.StopState.REVERSE),
+                new IntakeStateCommand(IntakeSubsystem.IntakeState.STOP)
         );
     }
 }

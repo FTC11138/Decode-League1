@@ -42,6 +42,8 @@ public class Constants {
     public static double blockerBlock = 0.4;
     public static double blockerOpen = 0.8;
 
+    public static long shootDelay = 180;
+
     public static double kP = 0.0004; // to make response faser
     public static double kI = 0.00005; // for undershoot
     public static double kD = 0.0; // dont change
