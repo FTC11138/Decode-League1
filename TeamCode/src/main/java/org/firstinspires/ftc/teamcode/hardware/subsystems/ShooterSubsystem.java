@@ -77,6 +77,7 @@ public class ShooterSubsystem extends RE_SubsystemBase {
 
         shootState = ShootState.STOP;
         stopState = StopState.STOP;
+        blockerState = BlockerState.BLOCKING;
 
         // Register subsystem in Robot container
         Robot.getInstance().subsystems.add(this);

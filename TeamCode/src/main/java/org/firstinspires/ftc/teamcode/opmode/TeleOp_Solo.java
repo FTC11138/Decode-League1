@@ -24,7 +24,6 @@ import org.firstinspires.ftc.teamcode.hardware.subsystems.ShooterSubsystem;
 import org.firstinspires.ftc.teamcode.util.Constants;
 import org.firstinspires.ftc.teamcode.util.Globals;
 
-@Disabled
 @TeleOp(name = "SoloReal")
 public class TeleOp_Solo extends CommandOpMode {
 
