@@ -33,13 +33,13 @@ public class Constants {
 
     /* -------------------------------------------- SHOOT CONSTANTS -------------------------------------------- */
 
-    public static double shootPower = 0.88;
+    public static double shootPower = 0.7;
     public static double readyPower = -1.0;
     public static double readySlowPower = -0.5;
 
     public static double reverseStopPower = 1;
 
-    public static double blockerBlock = 0.5;
+    public static double blockerBlock = 0.56;
     public static double blockerOpen = 0.99;
 
     public static long shootDelay = 180;
