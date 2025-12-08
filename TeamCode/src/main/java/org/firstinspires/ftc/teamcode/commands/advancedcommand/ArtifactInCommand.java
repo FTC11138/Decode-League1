@@ -24,7 +24,6 @@ public class ArtifactInCommand extends SequentialCommandGroup {
                 new IntakeStateCommand(IntakeSubsystem.IntakeState.IN),
                 new StopStateCommand(ShooterSubsystem.StopState.READYSLOW),
                 new ShooterStateCommand(ShooterSubsystem.ShootState.SHOOT)
-
         );
     }
 }

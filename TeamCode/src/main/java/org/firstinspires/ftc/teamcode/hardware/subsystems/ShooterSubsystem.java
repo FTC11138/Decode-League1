@@ -67,8 +67,8 @@ public class ShooterSubsystem extends RE_SubsystemBase {
 
         shootMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         shootMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        shootMotor.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER,
-//                new PIDFCoefficients(Constants.kP, Constants.kI, Constants.kD, Constants.kF));
+        shootMotor.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER,
+                new PIDFCoefficients(Constants.kP, Constants.kI, Constants.kD, Constants.kF));
 
         tickPerRev = shootMotor.getMotorType().getTicksPerRev();
 
@@ -77,6 +77,7 @@ public class ShooterSubsystem extends RE_SubsystemBase {
 
         shootState = ShootState.STOP;
         stopState = StopState.STOP;
+        blockerState = BlockerState.BLOCKING;
 
         // Register subsystem in Robot container
         Robot.getInstance().subsystems.add(this);
@@ -110,14 +111,16 @@ public class ShooterSubsystem extends RE_SubsystemBase {
 
         switch (shootState) {
             case LOWERPOWER:
-                shootMotor.setPower(0.7);
-                targetVelocity = 0.75 * maxTicksPerSecond;
+                shootMotor.setPower(0.5);
+//                targetVelocity = 0.75 * maxTicksPerSecond;
                 break;
 
             case SHOOT:
 
+//                shootMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
                 shootMotor.setPower(Constants.shootPower);
-                targetVelocity = Constants.shootPower * maxTicksPerSecond;
+//                targetVelocity = Constants.shootPower * maxTicksPerSecond;
                 break;
 
             case STOP:

@@ -24,7 +24,6 @@ import org.firstinspires.ftc.teamcode.hardware.subsystems.ShooterSubsystem;
 import org.firstinspires.ftc.teamcode.util.Constants;
 import org.firstinspires.ftc.teamcode.util.Globals;
 
-@Disabled
 @TeleOp(name = "SoloReal")
 public class TeleOp_Solo extends CommandOpMode {
 
@@ -61,6 +60,9 @@ public class TeleOp_Solo extends CommandOpMode {
 
     @Override
     public void initialize() {
+
+        Constants.shootPower = 1;
+
         g1 = new GamepadEx(gamepad1);
 
         Globals.IS_AUTO = false;
@@ -123,12 +125,15 @@ public class TeleOp_Solo extends CommandOpMode {
 
         // --- Use helper for all command scheduling ---
 
+        g1.getGamepadButton(GamepadKeys.Button.A)
+                .whenPressed(new ShooterStateCommand(ShooterSubsystem.ShootState.SHOOT));
+
         // A: SHOOT
-        scheduleCommand(
-                lastA,
-                a,
-                new ShooterStateCommand(ShooterSubsystem.ShootState.SHOOT)
-        );
+//        scheduleCommand(
+//                lastA,
+//                a,
+//                new ShooterStateCommand(ShooterSubsystem.ShootState.SHOOT)
+//        );
 
         // B: STOP SHOOTER
         scheduleCommand(

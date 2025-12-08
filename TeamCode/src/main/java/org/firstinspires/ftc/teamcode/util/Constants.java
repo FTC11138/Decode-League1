@@ -33,14 +33,16 @@ public class Constants {
 
     /* -------------------------------------------- SHOOT CONSTANTS -------------------------------------------- */
 
-    public static double shootPower = 0.88;
+    public static double shootPower = 0.7;
     public static double readyPower = -1.0;
     public static double readySlowPower = -0.5;
 
     public static double reverseStopPower = 1;
 
-    public static double blockerBlock = 0.4;
-    public static double blockerOpen = 0.8;
+    public static double blockerBlock = 0.5;
+    public static double blockerOpen = 0.999;
+
+    public static int shootDelay = 190;
 
     public static double kP = 0.0004; // to make response faser
     public static double kI = 0.00005; // for undershoot

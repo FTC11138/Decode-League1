@@ -14,7 +14,9 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.commands.advancedcommand.ArtifactInCommand;
 import org.firstinspires.ftc.teamcode.commands.advancedcommand.ArtifactLowerPowerShootCommand;
 import org.firstinspires.ftc.teamcode.commands.advancedcommand.ArtifactShootCommand;
+import org.firstinspires.ftc.teamcode.commands.advancedcommand.EverythingStopCommand;
 import org.firstinspires.ftc.teamcode.commands.drivecommand.PathCommand;
+import org.firstinspires.ftc.teamcode.commands.subsystem.ShooterStateCommand;
 import org.firstinspires.ftc.teamcode.commands.subsystem.StopStateCommand;
 import org.firstinspires.ftc.teamcode.hardware.Robot;
 import org.firstinspires.ftc.teamcode.hardware.subsystems.ShooterSubsystem;
@@ -37,9 +39,13 @@ public class Auto_9_0_Blue extends LinearOpMode {
     public static double shoot0Heading = 140;
 
 
-    public static double intake1X = 23.5;
-    public static double intake1Y = 84;
+    public static double intake1X = 15.8;
+    public static double intake1Y = 60;
     public static double intake1Heading = 180;
+
+    public static double gateOpen1X = 15.8;
+    public static double gateOpen1Y = 80;
+    public static double gateOpen1Heading = 90;
 
 
     public static double shoot1X = 43;
@@ -47,8 +53,8 @@ public class Auto_9_0_Blue extends LinearOpMode {
     public static double shoot1Heading = 140;
 
 
-    public static double intake2X = 19;
-    public static double intake2Y = 60;
+    public static double intake2X = 18;
+    public static double intake2Y = 84;
     public static double intake2Heading = 180;
 
 
@@ -57,8 +63,8 @@ public class Auto_9_0_Blue extends LinearOpMode {
     public static double shoot2Heading = 140;
 
 
-    public static double intake3X = 20;
-    public static double intake3Y = 35.6;
+    public static double intake3X = 16.9;
+    public static double intake3Y = 35.7;
     public static double intake3Heading = 180;
 
     public static double shoot3X = 43;
@@ -81,31 +87,34 @@ public class Auto_9_0_Blue extends LinearOpMode {
 
 
     // control points for intaking
-    public static double control1X = 98;
-    public static double control1Y = 82;
+    public static double control1X = 87.67;
+    public static double control1Y = 55.5;
 
-    public static double control2X = 69;
-    public static double control2Y = 76;
-    public static double control22X = 79;
-    public static double control22Y = 56;
+    public static double gate1X = 33.5;
+    public static double gate1Y = 54;
+    public static double gate12X = 32;
+    public static double gate12Y = 74;
 
-    public static double controlshoot2X = 64;
-    public static double controlshoot2Y = 58;
+    public static double control2X = 87.4;
+    public static double control2Y = 55.2;
+    public static double control22X = 56;
+    public static double control22Y = 60;
 
 
-    public static double control3X = 84;
-    public static double control3Y = 24.5;
-    public static double control32X = 46.4;
-    public static double control32Y = 39;
+    public static double control3X = 90;
+    public static double control3Y = 32;
+    public static double control32X = 52.4;
+    public static double control32Y = 35.3;
 
-    public static double control4X = 80;
-    public static double control4Y = 48;
+//    public static double control4X = 80;
+//    public static double control4Y = 48;
 
 
 
 
     public static Path shoot0Path;
     public static Path intake1Path;
+    public static Path gate1Path;
     public static Path shoot1Path;
     public static Path intake2Path;
     public static Path shoot2Path;
@@ -121,6 +130,7 @@ public class Auto_9_0_Blue extends LinearOpMode {
     public void buildPaths() {
         Pose shoot0Pose = new Pose(shoot0X, shoot0Y, Math.toRadians(shoot0Heading));
         Pose intake1Pose = new Pose(intake1X, intake1Y, Math.toRadians(intake1Heading));
+        Pose gate1Pose = new Pose(gateOpen1X, gateOpen1Y, Math.toRadians(gateOpen1Heading));
         Pose shoot1Pose = new Pose(shoot1X, shoot1Y, Math.toRadians(shoot1Heading));
         Pose intake2Pose = new Pose(intake2X, intake2Y, Math.toRadians(intake2Heading));
         Pose shoot2Pose = new Pose(shoot2X, shoot2Y, Math.toRadians(shoot2Heading));
@@ -134,23 +144,28 @@ public class Auto_9_0_Blue extends LinearOpMode {
 
         Pose intakeControl2 = new Pose(control2X, control2Y);
         Pose intakeControl22 = new Pose(control22X, control22Y);
-        Pose shootControl2 = new Pose(controlshoot2X, controlshoot2Y);
+
+        Pose gateControl1 = new Pose(gate1X, gate1Y);
+        Pose gateControl12 = new Pose(gate12X, gate12Y);
+
+
 
 
 
         Pose intakeControl3 = new Pose(control3X, control3Y);
         Pose intakeControl32 = new Pose(control32X, control32Y);
 
-        Pose intakeControl4 = new Pose(control4X, control4Y);
 
 
 
 
         shoot0Path = buildPath(startPose, shoot0Pose);
         intake1Path = buildCurve(shoot0Pose, intake1Pose, intakeControl1);
+        gate1Path = buildCurve(intake1Pose, gate1Pose, gateControl1, gateControl12, 0.2);
+
         shoot1Path = buildPath(intake1Pose, shoot1Pose, 0.5);
         intake2Path = buildCurve(shoot1Pose, intake2Pose, intakeControl2, intakeControl22);
-        shoot2Path = buildCurve(intake2Pose, shoot2Pose,shootControl2, 0.5);
+        shoot2Path = buildPath(intake2Pose, shoot2Pose, 0.5);
         intake3Path = buildCurve(shoot2Pose, intake3Pose, intakeControl3, intakeControl32);
         shoot3Path = buildPath(intake3Pose, shoot3Pose, 0.5);
 //        intake4Path = buildCurve(shoot3Pose, intake4Pose, intakeControl4, 0.3);
@@ -183,24 +198,26 @@ public class Auto_9_0_Blue extends LinearOpMode {
         CommandScheduler.getInstance().schedule(
                 new SequentialCommandGroup(
                         new PathCommand(shoot0Path).alongWith(
-                                new ArtifactInCommand()
+                                new ArtifactInCommand(),
+                                new ShooterStateCommand(ShooterSubsystem.ShootState.SHOOT)
                         ),
 
                         new WaitCommand(1000), // to let the launcher charge up
 
 
-                        new WaitCommand(350),
+                        new WaitCommand(300),
                         new ArtifactShootCommand(),
                         new WaitCommand(400),
-                        new ArtifactLowerPowerShootCommand(),
+                        new ArtifactShootCommand(),
                         new WaitCommand(800),
                         new ArtifactShootCommand(),
                         new ArtifactInCommand(),
 
-
-                        new StopStateCommand(ShooterSubsystem.StopState.REVERSE),
-
                         new PathCommand(intake1Path),
+
+                        new EverythingStopCommand(),
+
+                        new PathCommand(gate1Path),
 
                         new PathCommand(shoot1Path),
                         new WaitCommand(350),
@@ -211,9 +228,9 @@ public class Auto_9_0_Blue extends LinearOpMode {
                         new ArtifactShootCommand(),
                         new ArtifactInCommand(),
 
-                        new StopStateCommand(ShooterSubsystem.StopState.REVERSE),
-
                         new PathCommand(intake2Path),
+
+                        new EverythingStopCommand(),
 
                         new PathCommand(shoot2Path),
                         new WaitCommand(350),
@@ -224,10 +241,10 @@ public class Auto_9_0_Blue extends LinearOpMode {
                         new ArtifactShootCommand(),
                         new ArtifactInCommand(),
 
-                        new StopStateCommand(ShooterSubsystem.StopState.REVERSE),
-
 
                         new PathCommand(intake3Path),
+
+                        new EverythingStopCommand(),
 
                         new PathCommand(shoot3Path),
                         new WaitCommand(350),
@@ -238,7 +255,6 @@ public class Auto_9_0_Blue extends LinearOpMode {
                         new ArtifactShootCommand(),
                         new ArtifactInCommand(),
 
-                        new StopStateCommand(ShooterSubsystem.StopState.REVERSE),
 
 //                        new PathCommand(intake4Path),
 //
