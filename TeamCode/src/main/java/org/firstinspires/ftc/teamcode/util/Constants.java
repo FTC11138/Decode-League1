@@ -28,7 +28,7 @@ public class Constants {
 
     /* -------------------------------------------- INTAKE CONSTANTS -------------------------------------------- */
 
-    public static double intakeInPower = -0.85;
+    public static double intakeInPower = -0.8;
     public static double intakeOutPower = 1;
 
     /* -------------------------------------------- SHOOT CONSTANTS -------------------------------------------- */
@@ -42,7 +42,7 @@ public class Constants {
     public static double blockerBlock = 0.56;
     public static double blockerOpen = 0.99;
 
-    public static long shootDelay = 180;
+    public static long shootDelay = 190;
 
     public static double kP = 0.0004; // to make response faser
     public static double kI = 0.00005; // for undershoot

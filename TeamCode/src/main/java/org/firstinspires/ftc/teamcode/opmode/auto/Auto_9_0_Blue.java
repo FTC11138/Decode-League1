@@ -77,9 +77,9 @@ public class Auto_9_0_Blue extends LinearOpMode {
 //    public static double shoot4Y = 108;
 //    public static double shoot4Heading = 145;
 
-    public static double move3X = 43;
-    public static double move3Y = 72;
-    public static double moveHeading = 150;
+    public static double move3X = 21;
+    public static double move3Y = 98;
+    public static double moveHeading = 180;
 
 
 
@@ -151,15 +151,15 @@ public class Auto_9_0_Blue extends LinearOpMode {
 
 
         shoot0Path = buildPath(startPose, shoot0Pose);
-        intake1Path = buildCurve(shoot0Pose, intake1Pose, intakeControl1);
-        shoot1Path = buildPath(intake1Pose, shoot1Pose, 0.5);
-        intake2Path = buildCurve(shoot1Pose, intake2Pose, intakeControl2, intakeControl22);
+        intake1Path = buildCurve(shoot0Pose, intake1Pose, intakeControl1, 0.1);
+        shoot1Path = buildPath(intake1Pose, shoot1Pose, 0.9);
+        intake2Path = buildCurve(shoot1Pose, intake2Pose, intakeControl2, intakeControl22, 0.1);
         shoot2Path = buildCurve(intake2Pose, shoot2Pose,shootControl2, 0.5);
-        intake3Path = buildCurve(shoot2Pose, intake3Pose, intakeControl3, intakeControl32);
-        shoot3Path = buildPath(intake3Pose, shoot3Pose, 0.5);
+        intake3Path = buildCurve(shoot2Pose, intake3Pose, intakeControl3, intakeControl32, 0.1);
+        shoot3Path = buildPath(intake3Pose, shoot3Pose, 0.9);
 //        intake4Path = buildCurve(shoot3Pose, intake4Pose, intakeControl4, 0.3);
 //        shoot4Path = buildPath(intake4Pose, shoot4Pose, 0.5);
-        movePath = buildPath(shoot3Pose, movePose);
+        movePath = buildPath(shoot3Pose, movePose, 0.1);
 
 
     }
@@ -197,11 +197,11 @@ public class Auto_9_0_Blue extends LinearOpMode {
                         new WaitCommand(1000), // to let the launcher charge up
 
 
-                        new WaitCommand(400),
+                        new WaitCommand(600),
                         new ArtifactShootCommand(),
-                        new WaitCommand(400),
+                        new WaitCommand(600),
                         new ArtifactShootCommand(),
-                        new WaitCommand(400),
+                        new WaitCommand(600),
                         new ArtifactShootCommand(),
                         new IntakeStateCommand(IntakeSubsystem.IntakeState.IN),
                         new StopStateCommand(ShooterSubsystem.StopState.REVERSE),
@@ -218,11 +218,11 @@ public class Auto_9_0_Blue extends LinearOpMode {
 
 
                         new PathCommand(shoot1Path),
-                        new WaitCommand(400),
+                        new WaitCommand(600),
                         new ArtifactShootCommand(),
-                        new WaitCommand(400),
+                        new WaitCommand(600),
                         new ArtifactShootCommand(),
-                        new WaitCommand(400),
+                        new WaitCommand(600),
                         new ArtifactShootCommand(),
                         new IntakeStateCommand(IntakeSubsystem.IntakeState.IN),
                         new StopStateCommand(ShooterSubsystem.StopState.REVERSE),
@@ -238,11 +238,11 @@ public class Auto_9_0_Blue extends LinearOpMode {
                         ),
 
                         new PathCommand(shoot2Path),
-                        new WaitCommand(400),
+                        new WaitCommand(600),
                         new ArtifactShootCommand(),
-                        new WaitCommand(400),
+                        new WaitCommand(600),
                         new ArtifactShootCommand(),
-                        new WaitCommand(400),
+                        new WaitCommand(600),
                         new ArtifactShootCommand(),
                         new IntakeStateCommand(IntakeSubsystem.IntakeState.IN),
                         new StopStateCommand(ShooterSubsystem.StopState.REVERSE),
@@ -258,11 +258,11 @@ public class Auto_9_0_Blue extends LinearOpMode {
                         ),
 
                         new PathCommand(shoot3Path),
-                        new WaitCommand(350),
+                        new WaitCommand(600),
                         new ArtifactShootCommand(),
-                        new WaitCommand(400),
+                        new WaitCommand(600),
                         new ArtifactShootCommand(),
-                        new WaitCommand(800),
+                        new WaitCommand(600),
                         new ArtifactShootCommand(),
                         new IntakeStateCommand(IntakeSubsystem.IntakeState.IN),
                         new StopStateCommand(ShooterSubsystem.StopState.REVERSE),
