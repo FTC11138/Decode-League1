@@ -13,6 +13,7 @@ import com.pedropathing.geometry.Pose;
 import com.pedropathing.paths.HeadingInterpolator;
 import com.pedropathing.paths.Path;
 import com.pedropathing.paths.PathChain;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
@@ -30,8 +31,8 @@ import org.firstinspires.ftc.teamcode.util.Globals;
 
 import java.util.function.Supplier;
 
-
-@TeleOp (name = "SoloRealLowPower")
+@Disabled
+//@TeleOp (name = "SoloRealLowPower")
 public class TeleOp_SoloSlow extends CommandOpMode {
 
     private final Robot robot = Robot.getInstance();
