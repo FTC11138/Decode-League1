@@ -39,7 +39,7 @@ public class Constants {
 
     public static double reverseStopPower = 1;
 
-    public static double blockerBlock = 0.56;
+    public static double blockerBlock = 0.5;
     public static double blockerOpen = 0.99;
 
     public static long shootDelay = 190;

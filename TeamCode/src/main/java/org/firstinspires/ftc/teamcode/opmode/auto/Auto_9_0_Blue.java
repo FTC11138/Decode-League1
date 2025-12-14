@@ -77,7 +77,7 @@ public class Auto_9_0_Blue extends LinearOpMode {
 //    public static double shoot4Y = 108;
 //    public static double shoot4Heading = 145;
 
-    public static double move3X = 21;
+    public static double move3X = 23;
     public static double move3Y = 98;
     public static double moveHeading = 180;
 

@@ -41,7 +41,7 @@ public class Auto_9_0_Red_Low extends LinearOpMode {
     public static double shoot0Heading = 180 - 142;
 
 
-    public static double intake1X = 144 - 23.5;
+    public static double intake1X = 120.5;
     public static double intake1Y = 86;
     public static double intake1Heading = 180 - 180;
 
@@ -51,7 +51,7 @@ public class Auto_9_0_Red_Low extends LinearOpMode {
     public static double shoot1Heading = 180 - 142;
 
 
-    public static double intake2X = 144 - 19.5;
+    public static double intake2X = 124.5;
     public static double intake2Y = 62;
     public static double intake2Heading = 180 - 180;
 
@@ -61,7 +61,7 @@ public class Auto_9_0_Red_Low extends LinearOpMode {
     public static double shoot2Heading = 180 - 142;
 
 
-    public static double intake3X = 144 - 22;
+    public static double intake3X = 123;
     public static double intake3Y = 35.6;
     public static double intake3Heading = 180 - 180;
 
@@ -77,7 +77,7 @@ public class Auto_9_0_Red_Low extends LinearOpMode {
 //    public static double shoot4Y = 108;
 //    public static double shoot4Heading = 145;
 
-    public static double move3X = 144 - 21;
+    public static double move3X = 144 - 25;
     public static double move3Y = 98;
     public static double moveHeading = 180 - 180;
 
@@ -201,7 +201,7 @@ public class Auto_9_0_Red_Low extends LinearOpMode {
                         new ArtifactShootCommand(),
                         new WaitCommand(400),
                         new ArtifactShootCommand(),
-                        new WaitCommand(400),
+                        new WaitCommand(700),
                         new ArtifactShootCommand(),
                         new IntakeStateCommand(IntakeSubsystem.IntakeState.IN),
                         new StopStateCommand(ShooterSubsystem.StopState.REVERSE),
@@ -222,7 +222,7 @@ public class Auto_9_0_Red_Low extends LinearOpMode {
                         new ArtifactShootCommand(),
                         new WaitCommand(400),
                         new ArtifactShootCommand(),
-                        new WaitCommand(600),
+                        new WaitCommand(700),
                         new ArtifactShootCommand(),
                         new IntakeStateCommand(IntakeSubsystem.IntakeState.IN),
                         new StopStateCommand(ShooterSubsystem.StopState.REVERSE),
@@ -242,7 +242,7 @@ public class Auto_9_0_Red_Low extends LinearOpMode {
                         new ArtifactShootCommand(),
                         new WaitCommand(400),
                         new ArtifactShootCommand(),
-                        new WaitCommand(600),
+                        new WaitCommand(700),
                         new ArtifactShootCommand(),
                         new IntakeStateCommand(IntakeSubsystem.IntakeState.IN),
                         new StopStateCommand(ShooterSubsystem.StopState.REVERSE),
@@ -262,7 +262,7 @@ public class Auto_9_0_Red_Low extends LinearOpMode {
                         new ArtifactShootCommand(),
                         new WaitCommand(400),
                         new ArtifactShootCommand(),
-                        new WaitCommand(600),
+                        new WaitCommand(700),
                         new ArtifactShootCommand(),
                         new IntakeStateCommand(IntakeSubsystem.IntakeState.IN),
                         new StopStateCommand(ShooterSubsystem.StopState.REVERSE),
