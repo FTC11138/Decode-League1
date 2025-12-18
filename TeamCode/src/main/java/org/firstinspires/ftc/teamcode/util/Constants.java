@@ -1,71 +1,61 @@
 package org.firstinspires.ftc.teamcode.util;
-import com.bylazar.configurables.annotations.Configurable;
 
-import org.firstinspires.ftc.teamcode.hardware.subsystems.CameraSubsystem;
+import com.bylazar.configurables.annotations.Configurable;
 
 @Configurable
 public class Constants {
-
-    /* -------------------------------------------- DRIVE CONSTANTS -------------------------------------------- */
-
-
+    //Tolerance for paths
     public static double pathEndXTolerance = 1;
     public static double pathEndYTolerance = 1;
     public static double pathEndHeadingTolerance = Math.toRadians(2);
 
-    public static boolean robotCentric = false;
+    //Robot Centric is false, allows for field centric to be active
+    public static boolean RobotCentric = false;
 
-    /* -------------------------------------------- CAMERA CONSTANTS -------------------------------------------- */
-    //Pipeline: 0
-    //Res: 1280X960 40FPS
-    //Exposure: 252
-    // Black Level Offset: 0
-    // Sensor Gain: 15
-    // Marker Size 101.6
-    // Detector Downscale: 4
-    // Quality Threshold: 2
-    // Sort Mode: Largest
-
-    /* -------------------------------------------- INTAKE CONSTANTS -------------------------------------------- */
-
-    public static double intakeInPower = -0.85;
+    //Intake Constants
+    public static double intakeInPower = -1;
     public static double intakeOutPower = 1;
 
-    /* -------------------------------------------- SHOOT CONSTANTS -------------------------------------------- */
-
+    //Shoot Constants
     public static double shootPower = 0.7;
-    public static double readyPower = -1.0;
+    public static double readyPower = -1;
     public static double readySlowPower = -0.5;
-
     public static double reverseStopPower = 1;
 
+    //Servo Constants
     public static double blockerBlock = 0.5;
-    public static double blockerOpen = 0.999;
+    public static double blockerOpen = 0.99;
 
-    public static int shootDelay = 190;
+    //Delays
+    public static double shootDelay = 130;
+    // I might make it lower depending on how fast we want the shots to be
 
-    public static double kP = 0.0004; // to make response faser
-    public static double kI = 0.00005; // for undershoot
-    public static double kD = 0.0; // dont change
-    public static double kF = 32767 / ((1440 * 6000) / 60.0); // default must tune
+    // PIDF constants
+    public static double kP = 0.0004; // to make response faster, Proportional; Responds to the current error.
+    //Example: If your shooter wheel is spinning too slowly, proportional control increases motor power proportionally to how far off it is
+    public static double kI = 0.00005; // for undershoot, Integral; Responds to the accumulated error over time.
+    //Example: If your wheel is always 50 RPM below target, integral builds up and adds extra correction until it matches.
+    public static double kD = 0.0; // Don't Change, Derivative; Responds to the rate of change of error.
+    //Example: If the wheel is accelerating too quickly toward the target, derivative reduces power to avoid overshooting.
+    public static double kF = 32767 /((1440 * 6000) / 60.0);// Default need to change, -  Feedforward; Predicts the needed output based on the target setpoint, before any error occurs.
+    //- Example: If you know your shooter needs 60% motor power to hold 3000 RPM, feedforward applies that baseline immediately, and PID fine‑tunes around it.
 
+    //Turret Constants
+    //Controller Helper Params
+    public static double deadBandDeg = 0.3;// This is the amount of small range of error where the controller does nothing
+    public static double errAlpha = 0.35;// This is the smoothening factor, in this case with 35 it gives 35 percent weight to new data and 65 percent to old data, this prevents jitters and prevents teh derivatives from blowing up.
+    // Safety Rails
+    public static double maxIntegral = 30.0;//It is the integral term, accumulates error over time.
+    public static double maxDeriv = 320; // It is the maximium rate of error/change the controller can face
 
-    /* -------------------------------------------- TURRET CONSTANTS -------------------------------------------- */
-    // Controller helper params
-    public static double deadbandDeg = 0.30;
-    public static double errAlpha = 0.35;
-
-    // Safety rails
-    public static double maxIntegral = 30.0;   // deg·s (anti-windup)
-    public static double maxDeriv = 320.0;  // deg/s (D clamp)
-
-    // CR servo output limits
+    //CR Servo output limits
     public static double maxPower = 1.0;
-    public static double kS = 0.0;      //set to 0.03 is something is still messing up
+    public static double kS = 0.0;//set to 0.03 is something is still messing up
+    // It offsets the minimum power needed to overcome servo deadband or friction
 
-    // PID gains mapping error->power (tune these)
-    public static double kP_v = 0.020;
+    //PID gain mapping error -> power (Need to tune these)
+    public static double kP_v = 0.020;//This is the same as the PIDF constants above except that it is for the turret
     public static double kI_v = 0.000;
     public static double kD_v = 0.0010;
-}
 
+}
