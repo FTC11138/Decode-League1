@@ -125,15 +125,15 @@ public class TeleOp_Solo extends CommandOpMode {
 
         // --- Use helper for all command scheduling ---
 
-        g1.getGamepadButton(GamepadKeys.Button.A)
-                .whenPressed(new ShooterStateCommand(ShooterSubsystem.ShootState.SHOOT));
+//        g1.getGamepadButton(GamepadKeys.Button.A)
+//                .whenPressed(new ShooterStateCommand(ShooterSubsystem.ShootState.SHOOT));
 
-        // A: SHOOT
-//        scheduleCommand(
-//                lastA,
-//                a,
-//                new ShooterStateCommand(ShooterSubsystem.ShootState.SHOOT)
-//        );
+//         A: SHOOT
+        scheduleCommand(
+                lastA,
+                a,
+                new ShooterStateCommand(ShooterSubsystem.ShootState.SHOOT)
+        );
 
         // B: STOP SHOOTER
         scheduleCommand(
