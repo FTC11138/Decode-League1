@@ -5,8 +5,6 @@ import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
-import com.arcrobotics.ftclib.gamepad.GamepadEx;
-import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.pedropathing.geometry.Pose;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -28,7 +26,6 @@ import org.firstinspires.ftc.teamcode.util.Globals;
 public class TeleOp_Solo extends CommandOpMode {
 
     private final Robot robot = Robot.getInstance();
-    private GamepadEx g1;
 
     public static Pose startingPose;
 
@@ -63,8 +60,6 @@ public class TeleOp_Solo extends CommandOpMode {
 
         Constants.shootPower = 1;
 
-        g1 = new GamepadEx(gamepad1);
-
         Globals.IS_AUTO = false;
 
         robot.initialize(hardwareMap, telemetry);
@@ -88,22 +83,26 @@ public class TeleOp_Solo extends CommandOpMode {
             );
         }
 
-        // Read buttons
-        boolean a = g1.getButton(GamepadKeys.Button.A);
-        boolean b = g1.getButton(GamepadKeys.Button.B);
-        boolean x = g1.getButton(GamepadKeys.Button.X);
-        boolean y = g1.getButton(GamepadKeys.Button.Y);
-        boolean leftBumper = g1.getButton(GamepadKeys.Button.LEFT_BUMPER);
-        boolean rightBumper = g1.getButton(GamepadKeys.Button.RIGHT_BUMPER);
-        boolean dpadUp = g1.getButton(GamepadKeys.Button.DPAD_UP);
-        boolean dpadDown = g1.getButton(GamepadKeys.Button.DPAD_DOWN);
-        boolean dpadLeft = g1.getButton(GamepadKeys.Button.DPAD_LEFT);
-        boolean dpadRight = g1.getButton(GamepadKeys.Button.DPAD_RIGHT);
-        boolean rightStickButton = g1.getButton(GamepadKeys.Button.RIGHT_STICK_BUTTON);
-        boolean leftStickButton = g1.getButton(GamepadKeys.Button.LEFT_STICK_BUTTON);
+        // Read buttons directly from gamepad1
+        boolean a = gamepad1.a;
+        boolean b = gamepad1.b;
+        boolean x = gamepad1.x;
+        boolean y = gamepad1.y;
+
+        boolean leftBumper = gamepad1.left_bumper;
+        boolean rightBumper = gamepad1.right_bumper;
+
+        boolean dpadUp = gamepad1.dpad_up;
+        boolean dpadDown = gamepad1.dpad_down;
+        boolean dpadLeft = gamepad1.dpad_left;
+        boolean dpadRight = gamepad1.dpad_right;
+
+        boolean rightStickButton = gamepad1.right_stick_button;
+        boolean leftStickButton = gamepad1.left_stick_button;
+
         boolean ps = gamepad1.ps;
-        boolean start = g1.getButton(GamepadKeys.Button.START);
-        boolean back = g1.getButton(GamepadKeys.Button.BACK);
+        boolean start = gamepad1.start;
+        boolean back = gamepad1.back;
 
         // Robot-centric toggle on X rising edge (no command scheduling needed)
         if (!lastX && x) {
@@ -123,12 +122,7 @@ public class TeleOp_Solo extends CommandOpMode {
             gamepad1.rumble(2000);
         }
 
-        // --- Use helper for all command scheduling ---
-
-//        g1.getGamepadButton(GamepadKeys.Button.A)
-//                .whenPressed(new ShooterStateCommand(ShooterSubsystem.ShootState.SHOOT));
-
-//         A: SHOOT
+        // A: SHOOT
         scheduleCommand(
                 lastA,
                 a,
