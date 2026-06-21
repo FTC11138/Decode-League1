@@ -87,6 +87,7 @@ public class ShooterSubsystem extends RE_SubsystemBase {
     public void updateData() {
         Robot.getInstance().data.shootState = shootState;
         Robot.getInstance().data.stopState = stopState;
+        Robot.getInstance().data.blockerState = blockerState;
 
         Robot.getInstance().data.shootVelocity = shootMotor.getVelocity();
         Robot.getInstance().data.shootTargetVelocity = targetVelocity;

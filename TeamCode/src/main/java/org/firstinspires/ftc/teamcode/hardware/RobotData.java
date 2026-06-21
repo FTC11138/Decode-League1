@@ -22,6 +22,8 @@ public class RobotData {
 
     public ShooterSubsystem.ShootState shootState = ShooterSubsystem.ShootState.STOP;
 
+    public ShooterSubsystem.BlockerState blockerState = ShooterSubsystem.BlockerState.BLOCKING;
+
     public double shootVelocity = 0;
     public double shootTargetVelocity = 0;
 
@@ -62,6 +64,8 @@ public class RobotData {
 
         telemetry.addData("SHOOT STATE", this.shootState);
         telemetry.addData("STOP STATE",  this.stopState);
+        telemetry.addData("INTAKE STATE", this.intakeState);
+        telemetry.addData("BLOCKER STATE", this.blockerState);
         telemetry.addLine("");
 
         telemetry.addData("SHOOT v (tps)", "%.0f / %.0f", shootVelocity, shootTargetVelocity);
