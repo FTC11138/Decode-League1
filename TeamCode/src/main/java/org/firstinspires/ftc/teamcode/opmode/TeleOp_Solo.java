@@ -1,12 +1,10 @@
 package org.firstinspires.ftc.teamcode.opmode;
 
-import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 import com.pedropathing.geometry.Pose;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
@@ -16,7 +14,6 @@ import org.firstinspires.ftc.teamcode.commands.subsystem.IntakeStateCommand;
 import org.firstinspires.ftc.teamcode.commands.subsystem.ShooterStateCommand;
 import org.firstinspires.ftc.teamcode.commands.subsystem.StopStateCommand;
 import org.firstinspires.ftc.teamcode.hardware.Robot;
-import org.firstinspires.ftc.teamcode.hardware.RobotData;
 import org.firstinspires.ftc.teamcode.hardware.subsystems.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.hardware.subsystems.ShooterSubsystem;
 import org.firstinspires.ftc.teamcode.util.Constants;
@@ -57,11 +54,8 @@ public class TeleOp_Solo extends CommandOpMode {
 
     @Override
     public void initialize() {
-
         Constants.shootPower = 1;
-
         Globals.IS_AUTO = false;
-
         robot.initialize(hardwareMap, telemetry);
     }
 
@@ -79,7 +73,7 @@ public class TeleOp_Solo extends CommandOpMode {
                     -gamepad1.left_stick_y,
                     -gamepad1.left_stick_x,
                     -gamepad1.right_stick_x / 2.0,
-                    Constants.robotCentric // Robot Centric
+                    Constants.robotCentric
             );
         }
 
@@ -104,7 +98,7 @@ public class TeleOp_Solo extends CommandOpMode {
         boolean start = gamepad1.start;
         boolean back = gamepad1.back;
 
-        // Robot-centric toggle on X rising edge (no command scheduling needed)
+        // Robot-centric toggle on X rising edge
         if (!lastX && x) {
             Constants.robotCentric = !Constants.robotCentric;
             gamepad1.rumble(500);
@@ -116,43 +110,43 @@ public class TeleOp_Solo extends CommandOpMode {
             }
         }
 
-        // Enable teleOp on START rising edge (no command scheduling needed)
+        // Enable teleOp on START rising edge
         if (!lastStart && start) {
             teleOpEnabled = true;
             gamepad1.rumble(2000);
         }
 
         // A: SHOOT
-        scheduleCommand(
-                lastA,
-                a,
-                new ShooterStateCommand(ShooterSubsystem.ShootState.SHOOT)
-        );
+        if (!lastA && a) {
+            CommandScheduler.getInstance().schedule(
+                    new ShooterStateCommand(ShooterSubsystem.ShootState.SHOOT)
+            );
+        }
 
         // B: STOP SHOOTER
-        scheduleCommand(
-                lastB,
-                b,
-                new ShooterStateCommand(ShooterSubsystem.ShootState.STOP)
-        );
+        if (!lastB && b) {
+            CommandScheduler.getInstance().schedule(
+                    new ShooterStateCommand(ShooterSubsystem.ShootState.STOP)
+            );
+        }
 
         // Left bumper: stop intake, wait, then open blocker
-        scheduleCommand(
-                lastLeftBumper,
-                leftBumper,
-                new SequentialCommandGroup(
-                        new IntakeStateCommand(IntakeSubsystem.IntakeState.STOP),
-                        new WaitCommand(150),
-                        new BlockerStateCommand(ShooterSubsystem.BlockerState.OPEN)
-                )
-        );
+        if (!lastLeftBumper && leftBumper) {
+            CommandScheduler.getInstance().schedule(
+                    new SequentialCommandGroup(
+                            new IntakeStateCommand(IntakeSubsystem.IntakeState.STOP),
+                            new WaitCommand(150),
+                            new BlockerStateCommand(ShooterSubsystem.BlockerState.OPEN)
+                    )
+            );
+        }
 
         // Right bumper: intake OUT
-        scheduleCommand(
-                lastRightBumper,
-                rightBumper,
-                new IntakeStateCommand(IntakeSubsystem.IntakeState.OUT)
-        );
+        if (!lastRightBumper && rightBumper) {
+            CommandScheduler.getInstance().schedule(
+                    new IntakeStateCommand(IntakeSubsystem.IntakeState.OUT)
+            );
+        }
 
         // Update last button states (digital buttons)
         lastA = a;
@@ -176,38 +170,30 @@ public class TeleOp_Solo extends CommandOpMode {
         boolean rightTrigger = gamepad1.right_trigger > 0.5;
 
         // Right trigger: artifact shoot command
-        scheduleCommand(
-                lastRightTrigger,
-                rightTrigger,
-                new ArtifactShootCommand()
-        );
+        if (!lastRightTrigger && rightTrigger) {
+            CommandScheduler.getInstance().schedule(new ArtifactShootCommand());
+        }
 
         // Left trigger: intake IN, reverse stop wheel, block
-        scheduleCommand(
-                lastLeftTrigger,
-                leftTrigger,
-                new SequentialCommandGroup(
-                        new IntakeStateCommand(IntakeSubsystem.IntakeState.IN),
-                        new StopStateCommand(ShooterSubsystem.StopState.REVERSE),
-                        new BlockerStateCommand(ShooterSubsystem.BlockerState.BLOCKING)
-                )
-        );
+        if (!lastLeftTrigger && leftTrigger) {
+            CommandScheduler.getInstance().schedule(
+                    new SequentialCommandGroup(
+                            new IntakeStateCommand(IntakeSubsystem.IntakeState.IN),
+                            new StopStateCommand(ShooterSubsystem.StopState.REVERSE),
+                            new BlockerStateCommand(ShooterSubsystem.BlockerState.BLOCKING)
+                    )
+            );
+        }
 
         // Update last trigger states
         lastLeftTrigger = leftTrigger;
         lastRightTrigger = rightTrigger;
 
-        // Touchpad: reset pose (no command scheduling needed)
+        // Touchpad: reset pose
         if (gamepad1.touchpad) {
             robot.follower.setPose(new Pose());
             gamepad1.rumble(500);
             gamepad1.setLedColor(0, 1, 0, 1000);
-        }
-    }
-
-    private void scheduleCommand(boolean lastPress, boolean currPress, Command command) {
-        if (currPress && !lastPress) {
-            CommandScheduler.getInstance().schedule(command);
         }
     }
 }
