@@ -182,6 +182,16 @@ public class TeleOp_Solo extends CommandOpMode {
                 new ArtifactShootCommand()
         );
 
+//        // Servo test
+//        if (gamepad1.right_trigger > 0.5) {
+//            robot.shooterSubsystem.updateBlockerState(
+//                    ShooterSubsystem.BlockerState.OPEN
+//            );
+//        } else {
+//            robot.shooterSubsystem.updateBlockerState(
+//                    ShooterSubsystem.BlockerState.BLOCKING
+//            );
+//        }
         // Left trigger: intake IN, reverse stop wheel, block
         scheduleCommand(
                 lastLeftTrigger,
